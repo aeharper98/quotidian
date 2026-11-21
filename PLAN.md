@@ -36,6 +36,9 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 Next only unlocks once you've done the step's tap, so nobody reaches a session without knowing the two gestures.
 
 ### 1. Home
+- **Word of the Day card** at the top: the word, part of speech, its rhyme sound, definition, example bar, and a **"Freestyle with it"** button. That button starts a normal session on your chosen beat, opening on today's word (chip: "WORD OF THE DAY").
+  - Picking the word: every level-3 word in a fixed shuffled order, one per local calendar day, so it's the same for everyone and neighbouring days use different rhyme sounds. 108 advanced words is about 3.5 months before it repeats, and new word packs extend it.
+  - Free play is untouched. Word of the Day is an option, never forced.
 - Big "Today's Cypher" button showing the streak flame and a count, e.g. "🔥 6".
 - Beat picker: 6 cards (name, style, BPM), sorted easiest first, that preview on tap, plus a **Your own music** card.
 - "Free play" button.
@@ -64,7 +67,9 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - **Word change:** Tap (default) / Every bar / Every 2 bars. Auto modes change the word exactly on the downbeat.
 - **Next-word preview:** on/off.
 - **Haptic on beat:** on/off.
-- Daily reminder notification time (default 7pm).
+- **Daily reminder:** off by default. The app offers it after your first finished session. You pick the time (default 7pm), and the notification shows today's word, e.g. "Today's word: obsidian. Drop a bar on it."
+- **Reset progress:** clears the word bank, streak and history, with an in-app confirm step.
+- **How it works:** replays the walkthrough.
 
 ## How words are picked
 
@@ -78,7 +83,7 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
    (If a chain has no word at the chosen level, use the nearest level.)
 5. **Learning words** from the Word Bank get 3× weight whenever their chain comes up.
 6. Don't repeat a chain until every eligible chain has been used. Never show the same word twice in one session.
-7. **Daily Cypher:** the random seed is the date, so everyone gets the same chains and beat on a given day. It's 3 minutes long, the beat rotates daily, and finishing at least 2 minutes extends the streak. Start the Daily Cypher so its first DROP lands in the first 30 seconds.
+7. **Daily Cypher:** it always opens on the **Word of the Day**. The random seed is the date, so everyone gets the same chains and beat on a given day. It's 3 minutes long, the beat rotates daily, and finishing at least 2 minutes extends the streak. Start the Daily Cypher so its first DROP lands in the first 30 seconds.
 
 ## Audio
 
@@ -125,6 +130,14 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - The whole loop works from a phone: Claude pushes code, Actions builds it, you install from TestFlight, and you send feedback in chat.
 - The web prototype (`web/index.html`) is for testing the mechanics. It shares the same `words.json` and beats.
 
+## Drive mode (CarPlay-safe)
+
+- A toggle in a session ("Drive mode") and an automatic suggestion when CarPlay or car Bluetooth connects.
+- Each word is **spoken** with `AVSpeechSynthesizer` half a bar before the downbeat, ducking the beat slightly. There's nothing to read.
+- `MPRemoteCommandCenter`: **next track** = next word, **previous track** = say the word again and read its definition, **play/pause** = pause the beat.
+- `MPNowPlayingInfoCenter`: the title is the current word, the artist is "Rhyming on AH-muh", the album is the beat name. Steering-wheel buttons and the CarPlay Now Playing screen work without a special entitlement.
+- A full CarPlay app (its own icon and browsable beats) needs Apple's **CarPlay audio** entitlement. We'll request it once the app record exists and add a `CPTemplateApplicationSceneDelegate` with a beat list when it's granted.
+
 ## Data and storage
 
 - Everything is stored on the device for V1 (SwiftData): Word Bank entries, streak, sessions and settings. No account or backend yet.
@@ -137,7 +150,19 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - The first paid feature will be the **AI coach**, the only feature that costs real money each time someone uses it. Possible extras alongside it: themed word packs and unlimited recording history.
 - Ignore the `free` flag in `beats.json` for V1.
 
+## Launch checklist
+
+- [x] Privacy policy (`docs/privacy.html`) and support page (`docs/support.html`). They still need a contact email and public hosting.
+- [x] App Store text, keywords, age rating answers, privacy label and review notes (`docs/app-store.md`)
+- [x] App icon options (`design/icon/`). One needs choosing.
+- [x] App Store screenshots at 6.9" (1320×2868) (`design/screenshots/`)
+- [ ] Bundle ID, app record and API key secrets
+- [ ] Native app, cloud build and TestFlight
+- [ ] CarPlay audio entitlement request
+
 ## Not in V1 (planned)
+
+- **Share a clip:** a 15-second vertical video of your recording with the words animating on screen, for TikTok, Reels or Stories. This is how the app spreads, and it should be the first post-launch feature.
 
 - Transcription and an AI coach that scores your bars and suggests changes. This will be a Pro subscription.
 - More beats and themed word packs (Pro).

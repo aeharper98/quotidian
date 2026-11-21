@@ -59,6 +59,13 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 #startDaily { background: var(--accent); color: #0b0b0c; }
 #startFree { border: 1px solid var(--line); }
 .go small { display: block; font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .08em; opacity: .7; margin-top: 4px; }
+.wotd { display: grid; gap: 8px; padding: 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); }
+.wotd .label { margin-bottom: 0; }
+.wotd .ww { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 10vw, 48px); letter-spacing: -0.02em; line-height: 1; overflow-wrap: anywhere; }
+.wotd .wp { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.wotd p { margin: 0; line-height: 1.45; }
+.wotd .ex { color: var(--muted); font-style: italic; }
+.wotd button { justify-self: start; margin-top: 6px; background: var(--accent); color: #0b0b0c; border-radius: 12px; padding: 11px 16px; font-weight: 600; }
 .links { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
 .links button { text-decoration: underline; text-underline-offset: 3px; }
 
@@ -150,6 +157,15 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
     <p>Everyday; daily. <i>A word appears, the beat drops, you rap. Tap anywhere for the next rhyme. Tap the word to learn what it means.</i></p>
   </div>
 
+  <div class="wotd" id="wotd" hidden>
+    <div class="label"><span>Word of the day</span><span id="wDate"></span></div>
+    <div class="ww" id="wW"></div>
+    <div class="wp"><span id="wPos"></span> · rhymes on <span id="wSound"></span></div>
+    <p id="wDef"></p>
+    <p class="ex" id="wEx"></p>
+    <button id="wotdGo">Freestyle with it</button>
+  </div>
+
   <div>
     <div class="label"><span>Beat</span><span id="beatBlurb"></span></div>
     <div class="beats" id="beatList"></div>
@@ -180,7 +196,7 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
   </div>
 
   <div class="go">
-    <button id="startDaily">Daily cypher<small>3 MIN · TODAY'S BEAT</small></button>
+    <button id="startDaily">Daily cypher<small>3 MIN · STARTS ON TODAY'S WORD</small></button>
     <button id="startFree">Free play<small id="freeSub">WITH ESKI</small></button>
   </div>
   <div class="links"><button id="openBank">Word bank</button><span id="bankCount"></span><button id="openIntro">How it works</button></div>
@@ -256,6 +272,7 @@ function renderHome() {
       btn.onclick = () => { settings[key] = btn.dataset.v; save(); renderHome(); };
     }
   document.documentElement.style.setProperty("--accent", ACCENT[settings.beat]);
+  renderWotd();
   const today = dayKey();
   const live = streak.last === today || streak.last === dayKey(-1);
   $("streak").textContent = `🔥 ${live ? streak.count : 0} day streak`;
@@ -286,13 +303,31 @@ function pickLevel() {
   const w = LEVELW[settings.vocab]; let r = rnd() * (w[0] + w[1] + w[2]);
   return r < w[0] ? 1 : r < w[0] + w[1] ? 2 : 3;
 }
-function buildChain(c) {
-  const unused = c.words.filter(w => !S.used.has(w.w));
+function localDay(off = 0) { const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset() * 6e4) / 864e5) + off; }
+// Word of the day: every advanced word in a fixed shuffled order, one per day, so neighbouring days use different rhyme sounds.
+let WOTD_LIST = [];
+function wordOfDay(off = 0) {
+  if (!WOTD_LIST.length) {
+    for (const c of CHAINS) for (const w of c.words) if (w.level === 3) WOTD_LIST.push({ w, c });
+    const r = rngFrom(20261121);
+    for (let i = WOTD_LIST.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [WOTD_LIST[i], WOTD_LIST[j]] = [WOTD_LIST[j], WOTD_LIST[i]]; }
+  }
+  return WOTD_LIST.length ? WOTD_LIST[((localDay(off) % WOTD_LIST.length) + WOTD_LIST.length) % WOTD_LIST.length] : null;
+}
+function renderWotd() {
+  const d = wordOfDay(); if (!d) return;
+  $("wotd").hidden = false;
+  $("wW").textContent = d.w.w; $("wPos").textContent = d.w.pos; $("wSound").textContent = d.c.sound;
+  $("wDef").textContent = d.w.def; $("wEx").textContent = d.w.ex ? `“${d.w.ex}”` : ""; $("wEx").hidden = !d.w.ex;
+  $("wDate").textContent = new Date().toLocaleDateString(undefined, { day: "numeric", month: "short" });
+}
+function buildChain(c, forced) {
+  const unused = c.words.filter(w => !S.used.has(w.w) && w !== forced);
   const out = [];
   const l1 = unused.filter(w => w.level === 1);
-  const first = l1.length ? l1[Math.floor(rnd() * l1.length)] : unused[0];
+  const first = forced || (l1.length ? l1[Math.floor(rnd() * l1.length)] : unused[0]);
   out.push(first);
-  const want = Math.min(4 + Math.floor(rnd() * 3), unused.length);
+  const want = Math.min(4 + Math.floor(rnd() * 3), unused.length + (forced ? 1 : 0));
   while (out.length < want) {
     const lv = pickLevel();
     const left = unused.filter(w => !out.includes(w) && (settings.vocab !== "simple" || w.level < 3));
@@ -313,8 +348,10 @@ function newChain() {
     S.queue = eligibleChains().filter(c => c !== S.chain);
     for (let i = S.queue.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [S.queue[i], S.queue[j]] = [S.queue[j], S.queue[i]]; }
   }
-  S.chain = S.queue.pop();
-  S.words = buildChain(S.chain); S.pos = 0;
+  let forced = null;
+  if (S.forceFirst) { forced = S.forceFirst.w; S.chain = S.forceFirst.c; S.queue = S.queue.filter(c => c !== S.chain); S.forceFirst = null; }
+  else S.chain = S.queue.pop();
+  S.words = buildChain(S.chain, forced); S.pos = 0;
   const t = TYPES[S.chain.type];
   showChip(t ? t.label.toUpperCase() : "", S.chain.note, 4500);
   showWord();
@@ -444,12 +481,13 @@ function tick() {
 function flash() { const f = $("flash"); f.classList.remove("go"); void f.offsetWidth; f.classList.add("go"); }
 function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
 
-async function start(daily) {
+async function start(daily, withWotd) {
   Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], words: null, pos: 0, started: false, ready: false, t0: null,
-    lastBeat: -1, lastBar: -1, lastSec: null, lastCount: null, daily, chain: null });
+    lastBeat: -1, lastBar: -1, lastSec: null, lastCount: null, daily, chain: null,
+    forceFirst: (daily || withWotd) ? wordOfDay() : null, wotd: !!(daily || withWotd) });
   let beatId = settings.beat;
   if (daily) {
-    const day = Math.floor(Date.now() / 864e5);
+    const day = localDay();
     rnd = rngFrom(day * 2654435761);
     if (beatId !== "own") beatId = BEATS[day % BEATS.length].id;
   } else rnd = Math.random;
@@ -479,7 +517,7 @@ function reveal() {
   S.ready = true;
   newChain();
   const w = S.words[0], t = TYPES[S.chain.type];
-  showChip("YOUR FIRST WORD", t ? `${t.label} chain · ${S.chain.sound}` : "", 60000);
+  showChip(S.wotd ? "WORD OF THE DAY" : "YOUR FIRST WORD", t ? `${t.label} chain · ${S.chain.sound}` : "", 60000);
   renderDef(w, true);
   updateGhost("tap anywhere to drop the beat");
 }
@@ -531,6 +569,7 @@ function dayKey(off = 0) { const d = new Date(Date.now() + off * 864e5); return 
 function show(id) {
   for (const s of ["intro", "home", "cypher", "summary", "bank"]) $(s).hidden = s !== id;
   document.body.style.background = id === "cypher" ? "var(--stage)" : "var(--bg)";
+  window.scrollTo(0, 0); document.body.scrollTop = 0; $(id).scrollTop = 0;
   if (id === "home") renderHome();
 }
 
@@ -546,6 +585,7 @@ document.addEventListener("keydown", e => { if (!$("cypher").hidden && S.started
 $("endBtn").onclick = finish;
 $("startDaily").onclick = () => start(true);
 $("startFree").onclick = () => start(false);
+$("wotdGo").onclick = () => start(false, true);
 $("sumHome").onclick = () => show("home");
 $("bankHome").onclick = () => show("home");
 $("openBank").onclick = () => {

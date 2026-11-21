@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap">
+<style>
+html,body{margin:0;background:#0b0b0c}
+.s{width:1320px;height:2868px;position:relative;overflow:hidden;background:#0b0b0c}
+.s h1{position:absolute;left:110px;right:110px;top:190px;margin:0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:124px;line-height:.98;letter-spacing:-.035em;color:#f4f2ee;text-wrap:balance}
+.s h1 em{font-style:normal;color:#ffb547}
+.s img{position:absolute;left:120px;top:640px;width:1080px;border-radius:72px;outline:3px solid #2a2928}
+</style>
+<div id="list"></div>
+<script>
+const S=[["reveal","One word. Then the beat <em>drops.</em>"],["rhyme","Rhymes the <em>British</em> way."],["def","Tap the word. <em>Learn</em> the word."],["home","A new word <em>every day.</em>"],["bank","Look it up once. <em>Keep it.</em>"],["beats","Six original beats. Or <em>your own music.</em>"]];
+for(const [i,[f,h]] of S.entries()){const d=document.createElement('div');d.className='s';d.id='s'+i;d.innerHTML=`<h1>${h}</h1><img src="raw-${f}.png">`;document.getElementById('list').appendChild(d);}
+</script>
