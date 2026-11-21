@@ -108,10 +108,42 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 .list p { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; }
 .empty { color: var(--muted); font-size: 14px; }
 .back { align-self: flex-start; padding: 10px 16px; }
-@media (prefers-reduced-motion: reduce) { #word.in, #flash.go { animation: none; } #word.pulse, #word.pulse1 { transform: none; } }
+/* ---------- walkthrough ---------- */
+#intro { padding-block: 18px 22px; max-width: 560px; margin: 0 auto; gap: 18px; }
+.dots { display: flex; gap: 6px; }
+.dots i { height: 4px; flex: 1; border-radius: 2px; background: var(--line); }
+.dots i.on { background: var(--accent); }
+.step { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.step h2 { font-family: var(--display); font-weight: 800; font-size: clamp(38px, 11vw, 60px); line-height: .95; letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+.step p { margin: 0; line-height: 1.5; color: var(--muted); max-width: 44ch; }
+.step p b { color: var(--fg); font-weight: 600; }
+.pad { flex: 1; min-height: 220px; border: 1px solid var(--line); border-radius: 18px; background: var(--stage); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 16px; cursor: pointer; position: relative; text-align: center; }
+.pad .pw { font-family: var(--display); font-weight: 800; font-size: clamp(44px, 14vw, 84px); letter-spacing: -0.03em; line-height: 1; padding: 6px 10px; }
+.pad .pw.in { animation: slam .22s ease-out; }
+.pad .ph { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.pad .pd { font-size: 15px; line-height: 1.45; max-width: 32ch; }
+.pad .pd i { color: var(--muted); }
+.levels { display: grid; gap: 10px; }
+.levels button { text-align: left; border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 4px; }
+.levels button b { font-family: var(--display); font-size: 20px; }
+.levels button span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.levels button[aria-pressed="true"] { border-color: var(--accent); background: var(--card); }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.nav .skip { color: var(--muted); font-size: 14px; padding: 10px 0; }
+.nav .nextb { background: var(--fg); color: var(--bg); border-radius: 14px; padding: 15px 22px; font-family: var(--display); font-weight: 800; font-size: 18px; }
+.nav .nextb:disabled { opacity: .3; cursor: default; }
+#ghost.hint { opacity: .75; font-family: var(--mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; animation: breathe 1.6s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { #word.in, #flash.go, #ghost.hint, .pad .pw.in { animation: none; } #word.pulse, #word.pulse1 { transform: none; } }
 </style>
 
-<section id="home" class="screen">
+<section id="intro" class="screen" hidden>
+  <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+  <div class="step" id="step"></div>
+  <div class="nav"><button class="skip" id="introSkip">Skip</button><button class="nextb" id="introNext">Next</button></div>
+</section>
+
+<section id="home" class="screen" hidden>
   <div class="entry">
     <h1>quotidian</h1>
     <div class="pron"><span>/kwɒˈtɪd.i.ən/</span><span>adjective</span><span id="streak">🔥 0 day streak</span></div>
@@ -151,7 +183,7 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
     <button id="startDaily">Daily cypher<small>3 MIN · TODAY'S BEAT</small></button>
     <button id="startFree">Free play<small id="freeSub">WITH ESKI</small></button>
   </div>
-  <div class="links"><button id="openBank">Word bank</button><span id="bankCount"></span></div>
+  <div class="links"><button id="openBank">Word bank</button><span id="bankCount"></span><button id="openIntro">How it works</button></div>
 </section>
 
 <section id="cypher" class="screen" hidden>
@@ -194,7 +226,7 @@ const store = {
   set(k, v) { try { localStorage.setItem("q_" + k, JSON.stringify(v)); } catch {} }
 };
 let BEATS = [], CHAINS = [], TYPES = {};
-const settings = Object.assign({ beat: "eski", vocab: "mixed", mode: "tap", ownBpm: 90 }, store.get("settings", {}));
+const settings = Object.assign({ beat: "dusty", vocab: "mixed", mode: "tap", ownBpm: 90 }, store.get("settings", {}));
 let bank = store.get("bank", {});           // word -> {status, seen, def, pos}
 let streak = store.get("streak", { count: 0, last: null });
 
@@ -302,9 +334,15 @@ function showWord() {
   const w = S.words[S.pos]; S.used.add(w.w); S.seen++; S.tappedThis = false;
   const el = $("word"); el.textContent = w.w; fit(el);
   el.classList.remove("in"); void el.offsetWidth; el.classList.add("in");
-  const nx = S.words[S.pos + 1];
-  $("ghost").textContent = nx ? nx.w : "· new sound next ·";
+  updateGhost();
   hideDef();
+}
+function updateGhost(text) {
+  const g = $("ghost");
+  g.classList.toggle("hint", !!text);
+  if (text) { g.textContent = text; return; }
+  const nx = S.words && S.words[S.pos + 1];
+  g.textContent = nx ? nx.w : "· new sound next ·";
 }
 function fit(el) {
   el.style.fontSize = "100px";
@@ -313,13 +351,16 @@ function fit(el) {
   el.style.fontSize = Math.max(28, size) + "px";
 }
 let defTimer;
-function showDef() {
-  const w = S.words[S.pos]; if (!w) return;
+function renderDef(w, persist) {
   $("dW").textContent = w.w; $("dPos").textContent = w.pos;
   $("dLv").textContent = ["", "SIMPLE", "MID", "ADVANCED"][w.level];
   $("dDef").textContent = w.def; $("dEx").textContent = w.ex ? `“${w.ex}”` : ""; $("dEx").hidden = !w.ex;
   $("def").classList.add("show");
-  clearTimeout(defTimer); defTimer = setTimeout(hideDef, 4500);
+  clearTimeout(defTimer); if (!persist) defTimer = setTimeout(hideDef, 4500);
+}
+function showDef() {
+  const w = S.words[S.pos]; if (!w) return;
+  renderDef(w, S.ready);
   if (!S.tappedThis) {
     S.tappedThis = true;
     if (!S.looked.includes(w)) S.looked.push(w);
@@ -364,12 +405,13 @@ function tick() {
   if (S.daily && el >= 180) return finish();
   const beatLen = S.bar / 4;
   const rel = now - S.loopStart;
-  if (rel < 0) {            // intro: count in on the last bar
+  if (rel < 0) {            // intro: the first word stays up, count in underneath
     const left = Math.ceil(-rel / beatLen);
-    if (left <= 4 && left !== S.lastCount) { S.lastCount = left; $("word").textContent = left; fit($("word")); }
+    const txt = left <= 4 ? `drop in ${left}` : "get ready";
+    if (txt !== S.lastCount) { S.lastCount = txt; updateGhost(txt); }
     return;
   }
-  if (!S.started) { S.started = true; flash(); newChain(); }
+  if (!S.started) { S.started = true; flash(); updateGhost(); if (navigator.vibrate) try { navigator.vibrate(30); } catch {} }
   const beatIdx = Math.floor(rel / beatLen);
   if (beatIdx === S.lastBeat) return;
   S.lastBeat = beatIdx;
@@ -403,7 +445,7 @@ function flash() { const f = $("flash"); f.classList.remove("go"); void f.offset
 function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
 
 async function start(daily) {
-  Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], words: null, pos: 0, started: false,
+  Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], words: null, pos: 0, started: false, ready: false, t0: null,
     lastBeat: -1, lastBar: -1, lastSec: null, lastCount: null, daily, chain: null });
   let beatId = settings.beat;
   if (daily) {
@@ -418,8 +460,6 @@ async function start(daily) {
   $("cypher").classList.remove("dim", "black");
   if (S.own) {
     S.bar = 240 / settings.ownBpm; S.sections = null; S.loopBars = 0;
-    S.t0 = clockNow(); S.loopStart = S.t0 + S.bar;   // one bar count-in
-    showChip("YOUR MUSIC", `${settings.ownBpm} BPM · tap anywhere for the next word`, 3000);
   } else {
     const b = BEATS.find(x => x.id === beatId);
     ensureCtx();
@@ -430,20 +470,41 @@ async function start(daily) {
     $("loading").hidden = true;
     if ($("cypher").hidden) return;
     S.bar = b.barSeconds; S.sections = b.sections; S.loopBars = b.loopBars;
-    const t = ctx.currentTime + 0.15, introDur = b.introBars * b.barSeconds;
+    S.beat = b; S.buffers = [intro, loop];
+  }
+  reveal();
+}
+function reveal() {
+  // Show the first word (and what it means) before anything plays, so you can think of a line.
+  S.ready = true;
+  newChain();
+  const w = S.words[0], t = TYPES[S.chain.type];
+  showChip("YOUR FIRST WORD", t ? `${t.label} chain · ${S.chain.sound}` : "", 60000);
+  renderDef(w, true);
+  updateGhost("tap anywhere to drop the beat");
+}
+function drop() {
+  S.ready = false; hideDef();
+  $("chip").style.opacity = 0;
+  if (S.own) {
+    S.t0 = clockNow(); S.loopStart = S.t0 + S.bar;   // one bar count-in
+  } else {
+    const b = S.beat, [intro, loop] = S.buffers;
+    ensureCtx();
+    const t = ctx.currentTime + 0.12, introDur = b.introBars * b.barSeconds;
     const si = ctx.createBufferSource(); si.buffer = intro; si.connect(ctx.destination); si.start(t, 0, introDur);
     const sl = ctx.createBufferSource(); sl.buffer = loop; sl.loop = true;
     sl.loopStart = b.loopStartFrame / b.sampleRate; sl.loopEnd = (b.loopStartFrame + b.loopFrames) / b.sampleRate;
     sl.connect(ctx.destination); sl.start(t + introDur, sl.loopStart);
     sources = [si, sl];
     S.t0 = t; S.loopStart = t + introDur;
-    showChip(b.name.toUpperCase() + " · " + b.bpm + " BPM", "The beat drops after the count-in.", 2500);
   }
   cancelAnimationFrame(raf); tick();
 }
 function finish() {
   cancelAnimationFrame(raf); stopAudio(); leaveWord();
-  const el = clockNow() - S.t0;
+  if (S.t0 == null) { show("home"); return; }   // ended before the beat dropped
+  const el = Math.max(0, clockNow() - S.t0);
   if (S.daily && el >= 120) {
     const today = dayKey();
     if (streak.last !== today) { streak = { count: streak.last === dayKey(-1) ? streak.count + 1 : 1, last: today }; store.set("streak", streak); }
@@ -468,15 +529,16 @@ function renderWordList(el, items, emptyText) {
 }
 function dayKey(off = 0) { const d = new Date(Date.now() + off * 864e5); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
 function show(id) {
-  for (const s of ["home", "cypher", "summary", "bank"]) $(s).hidden = s !== id;
+  for (const s of ["intro", "home", "cypher", "summary", "bank"]) $(s).hidden = s !== id;
   document.body.style.background = id === "cypher" ? "var(--stage)" : "var(--bg)";
   if (id === "home") renderHome();
 }
 
 // ---------- input ----------
 $("stage").addEventListener("click", e => {
+  if (e.target === $("word")) { if (S.words) showDef(); return; }
+  if (S.ready) { drop(); return; }
   if (!S.started) return;
-  if (e.target === $("word")) { showDef(); return; }
   next();
 });
 $("word").addEventListener("keydown", e => { if (e.key === "Enter") showDef(); });
@@ -493,12 +555,82 @@ $("openBank").onclick = () => {
 };
 window.addEventListener("resize", () => { if (!$("cypher").hidden && $("word").textContent) fit($("word")); });
 
+// ---------- walkthrough ----------
+const STEPS = [
+  { title: "One word. One beat. You rap.",
+    body: "Quotidian puts a word on screen and drops a beat. Rap a line that lands on that word. Then get the next one: it rhymes with the last, so your bars rhyme too.",
+    pad: null },
+  { title: "Tap anywhere for the next rhyme.",
+    body: "Try it. Tap the black box.",
+    pad: { words: ["drama", "karma", "farmer", "armour"], done: "In a British accent the r goes silent, so <b>farmer</b> and <b>armour</b> rhyme with <b>drama</b>. Quotidian rhymes the way UK MCs do: by sound, not spelling." } },
+  { title: "Tap the word to learn it.",
+    body: "The beat never stops while you read. Any word you look up comes back in later sessions until you know it.",
+    pad: { def: { w: "quotidian", pos: "adjective", def: "Everyday; ordinary; happening every day." } } },
+  { title: "How hard?",
+    body: "You can change this any time. Advanced mixes in more words like the one above.",
+    levels: true },
+];
+let stepIdx = 0, stepDone = false;
+function renderStep() {
+  const st = STEPS[stepIdx];
+  [...$("dots").children].forEach((d, i) => d.classList.toggle("on", i <= stepIdx));
+  const el = $("step"); el.innerHTML = "";
+  const h = document.createElement("h2"); h.textContent = st.title; el.appendChild(h);
+  const p = document.createElement("p"); p.textContent = st.body; el.appendChild(p);
+  stepDone = !st.pad;
+  if (st.pad && st.pad.words) {
+    let i = 0;
+    const pad = document.createElement("div"); pad.className = "pad"; pad.setAttribute("role", "button"); pad.tabIndex = 0;
+    pad.innerHTML = `<div class="ph">rhyming on: AH-muh</div><div class="pw"></div><div class="pd"></div>`;
+    const pw = pad.querySelector(".pw"); pw.textContent = st.pad.words[0];
+    pad.onclick = () => {
+      if (i >= st.pad.words.length - 1) return;
+      i++; pw.textContent = st.pad.words[i]; pw.classList.remove("in"); void pw.offsetWidth; pw.classList.add("in");
+      if (i === st.pad.words.length - 1) { pad.querySelector(".pd").innerHTML = st.pad.done; stepDone = true; syncNav(); }
+    };
+    el.appendChild(pad);
+  }
+  if (st.pad && st.pad.def) {
+    const d = st.pad.def;
+    const pad = document.createElement("div"); pad.className = "pad";
+    pad.innerHTML = `<div class="ph">tap the word</div><div class="pw" role="button" tabindex="0"></div><div class="pd"></div>`;
+    const pw = pad.querySelector(".pw"); pw.textContent = d.w;
+    pw.onclick = () => { pad.querySelector(".pd").innerHTML = `<i>${d.pos}</i><br>${d.def}`; pad.querySelector(".ph").textContent = "saved to your word bank"; stepDone = true; syncNav(); };
+    el.appendChild(pad);
+  }
+  if (st.levels) {
+    const box = document.createElement("div"); box.className = "levels";
+    for (const [v, name, ex] of [["simple", "Simple", "drama · karma · farmer"], ["mixed", "Mixed", "drama · melodrama · panorama"], ["advanced", "Advanced", "panorama · quotidian · perfidious"]]) {
+      const b = document.createElement("button"); b.setAttribute("aria-pressed", settings.vocab === v);
+      b.innerHTML = `<b></b><span></span>`; b.querySelector("b").textContent = name; b.querySelector("span").textContent = ex;
+      b.onclick = () => { settings.vocab = v; save(); renderStep(); };
+      box.appendChild(b);
+    }
+    el.appendChild(box);
+    const tip = document.createElement("p"); tip.textContent = "Volume up and silent switch off. Your first beat is Dusty, the slowest one.";
+    el.appendChild(tip);
+  }
+  syncNav();
+}
+function syncNav() {
+  const last = stepIdx === STEPS.length - 1;
+  $("introNext").textContent = last ? "Drop the beat" : "Next";
+  $("introNext").disabled = !stepDone;
+}
+function openIntro() { stepIdx = 0; show("intro"); document.documentElement.style.setProperty("--accent", ACCENT.dusty); renderStep(); }
+function endIntro(play) {
+  store.set("onboarded", true);
+  if (play && BEATS.length) { settings.beat = "dusty"; save(); start(false); } else show("home");
+}
+$("introNext").onclick = () => { if (stepIdx < STEPS.length - 1) { stepIdx++; renderStep(); } else endIntro(true); };
+$("introSkip").onclick = () => endIntro(false);
+$("openIntro").onclick = openIntro;
+
 // ---------- boot ----------
 Promise.all([fetch("beats/beats.json").then(r => r.json()), fetch("words.json").then(r => r.json())]).then(([b, w]) => {
   BEATS = b.beats; CHAINS = w.chains; TYPES = w.rhymeTypes;
   if (!BEATS.some(x => x.id === settings.beat) && settings.beat !== "own") settings.beat = BEATS[0].id;
-  renderHome();
-}).catch(() => { $("beatList").innerHTML = '<div class="beat"><span></span><span class="st">Couldn\'t load beats. Reload the page.</span></div>'; });
-renderHome();
+  if (!store.get("onboarded", false)) openIntro(); else show("home");
+}).catch(() => { show("home"); $("beatList").innerHTML = '<div class="beat"><span></span><span class="st">Couldn\'t load beats. Reload the page.</span></div>'; });
 })();
 </script>

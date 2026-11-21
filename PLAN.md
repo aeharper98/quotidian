@@ -27,6 +27,14 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ## Screens
 
+### 0. First-launch walkthrough (4 steps, skippable, reopen from "How it works")
+1. **"One word. One beat. You rap."** What the app is, in two sentences.
+2. **"Tap anywhere for the next rhyme."** A practice pad you actually tap: drama → karma → farmer → armour. Then it explains that in a British accent the r goes silent, which is why they rhyme.
+3. **"Tap the word to learn it."** Tap *quotidian* to see its meaning: "saved to your word bank".
+4. **"How hard?"** Pick Simple, Mixed or Advanced, each with example words. A tip to turn the volume up and the silent switch off. The **"Drop the beat"** button starts the first session on Dusty, the slowest beat.
+
+Next only unlocks once you've done the step's tap, so nobody reaches a session without knowing the two gestures.
+
 ### 1. Home
 - Big "Today's Cypher" button showing the streak flame and a count, e.g. "🔥 6".
 - Beat picker: 6 cards (name, style, BPM), sorted easiest first, that preview on tap, plus a **Your own music** card.
@@ -35,7 +43,8 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ### 2. Cypher (the main screen)
 - Full-bleed black. One word in the centre, **huge** (as big as fits on one line, heavy rounded font, auto-shrink for long words).
-- On start: the **intro** plays (filtered) with a "3 · 2 · 1" countdown on its last bar, then **the drop**: the loop starts and the first word slams in.
+- **First-word reveal:** before any sound plays, the first word is already on screen with its definition card open. A chip reads "YOUR FIRST WORD · Multi chain · ED-uh-bul", and the hint "tap anywhere to drop the beat" pulses below. You get as long as you like to think of an opening line.
+- **Tap to drop:** the filtered intro plays with the word still up, and the hint counts down ("drop in 4… 3… 2… 1"). On the drop the screen flashes, the haptic hits, and the next-word preview appears. The first word stays, because it's the one you prepared for.
 - **Tap anywhere except the word:** go to the next word, with a quick scale-in animation and a light haptic.
 - **Tap the word:** a definition card slides up from the bottom (word, part of speech, definition, example bar if present). It fades after 4 seconds or on the next tap. **The beat never stops.** Tapping also saves the word to the Word Bank.
 - **Pulse:** the word gently scales (1.0 → 1.04) on every beat, with a bigger pulse on bar 1, synced to the beat clock.
@@ -119,6 +128,14 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 ## Data and storage
 
 - Everything is stored on the device for V1 (SwiftData): Word Bank entries, streak, sessions and settings. No account or backend yet.
+
+## Money: launch free
+
+- **V1 is completely free:** no paywall, no ads, no account. Everything is unlocked, including all 6 beats.
+- Why: the app only works if people come back every day. A paywall before anyone has a streak hurts retention and early reviews, and the beats cost us nothing to make.
+- First get TestFlight and first-month numbers: day-7 retention, sessions per week, words looked up.
+- The first paid feature will be the **AI coach**, the only feature that costs real money each time someone uses it. Possible extras alongside it: themed word packs and unlimited recording history.
+- Ignore the `free` flag in `beats.json` for V1.
 
 ## Not in V1 (planned)
 
