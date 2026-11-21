@@ -8,11 +8,56 @@
       "key": "F minor",
       "blurb": "Square-wave grime riff, half-time clap. Fast and bouncy.",
       "beatsPerBar": 4,
-      "loopBars": 16,
+      "loopBars": 48,
       "introBars": 2,
-      "loopFile": "eski_loop.m4a",
-      "introFile": "eski_intro.m4a",
+      "loopFile": "eski_loop.mp3",
+      "introFile": "eski_intro.mp3",
       "barSeconds": 1.714286,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 3628800,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
       "free": true
     },
     {
@@ -23,11 +68,56 @@
       "key": "D minor",
       "blurb": "Swung drums, warm keys, vinyl crackle. Slow and roomy, best for beginners.",
       "beatsPerBar": 4,
-      "loopBars": 16,
+      "loopBars": 48,
       "introBars": 2,
-      "loopFile": "dusty_loop.m4a",
-      "introFile": "dusty_intro.m4a",
+      "loopFile": "dusty_loop.mp3",
+      "introFile": "dusty_intro.mp3",
       "barSeconds": 2.666667,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 5644800,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
       "free": true
     },
     {
@@ -38,12 +128,237 @@
       "key": "F# minor",
       "blurb": "Sliding 808s, skippy hats, dark bells. Hardest to ride.",
       "beatsPerBar": 4,
-      "loopBars": 16,
+      "loopBars": 48,
       "introBars": 2,
-      "loopFile": "midnight_loop.m4a",
-      "introFile": "midnight_intro.m4a",
+      "loopFile": "midnight_loop.mp3",
+      "introFile": "midnight_intro.mp3",
       "barSeconds": 1.690141,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 3577690,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
       "free": true
+    },
+    {
+      "id": "brass",
+      "name": "Brass",
+      "style": "Soul boom bap",
+      "bpm": 92,
+      "key": "G minor",
+      "blurb": "Live-band horns, choir and bass guitar over loose, human drums.",
+      "beatsPerBar": 4,
+      "loopBars": 48,
+      "introBars": 2,
+      "loopFile": "brass_loop.mp3",
+      "introFile": "brass_intro.mp3",
+      "barSeconds": 2.608696,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 5522087,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
+      "free": false
+    },
+    {
+      "id": "afterglow",
+      "name": "Afterglow",
+      "style": "UK garage",
+      "bpm": 132,
+      "key": "F# minor",
+      "blurb": "Emotional piano, chopped vocals, 2-step swing and a big drop.",
+      "beatsPerBar": 4,
+      "loopBars": 48,
+      "introBars": 2,
+      "loopFile": "afterglow_loop.mp3",
+      "introFile": "afterglow_intro.mp3",
+      "barSeconds": 1.818182,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 3848727,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
+      "free": false
+    },
+    {
+      "id": "foundry",
+      "name": "Foundry",
+      "style": "Left-field hip-hop",
+      "bpm": 100,
+      "key": "C minor",
+      "blurb": "Sparse and clanky: dissonant chords, metal percussion, lots of space.",
+      "beatsPerBar": 4,
+      "loopBars": 48,
+      "introBars": 2,
+      "loopFile": "foundry_loop.mp3",
+      "introFile": "foundry_intro.mp3",
+      "barSeconds": 2.4,
+      "sampleRate": 44100,
+      "loopStartFrame": 44100,
+      "loopFrames": 5080320,
+      "sections": [
+        {
+          "name": "A",
+          "startBar": 0,
+          "bars": 8
+        },
+        {
+          "name": "A2",
+          "startBar": 8,
+          "bars": 8
+        },
+        {
+          "name": "BREAK",
+          "startBar": 16,
+          "bars": 4
+        },
+        {
+          "name": "BUILD",
+          "startBar": 20,
+          "bars": 4
+        },
+        {
+          "name": "DROP",
+          "startBar": 24,
+          "bars": 8
+        },
+        {
+          "name": "SWITCH",
+          "startBar": 32,
+          "bars": 8
+        },
+        {
+          "name": "STRIP",
+          "startBar": 40,
+          "bars": 4
+        },
+        {
+          "name": "A2",
+          "startBar": 44,
+          "bars": 4
+        }
+      ],
+      "free": false
     }
   ]
 }

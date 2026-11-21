@@ -15,17 +15,21 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ## What's in the bundle (already made, in `Resources/`)
 
-- `beats.json` plus 3 beats, each as an **intro** (2 filtered bars and a riser) and a **16-bar seamless loop** (`.m4a`). All audio is synthesised from code, so we own 100% of it.
-  - **Eski**: grime, 140 BPM
-  - **Dusty**: boom bap, 90 BPM, the beginner beat
-  - **Midnight**: UK drill, 142 BPM
+- `Beats/beats.json` plus **6 beats**. Each one is an **intro** (2 filtered bars and a riser, played once) and a **48-bar arranged loop** (`.mp3`, 80–130 s). All audio is synthesised from code, so we own 100% of it.
+  - **Eski**: grime, 140 BPM (free)
+  - **Dusty**: boom bap, 90 BPM, the beginner beat (free)
+  - **Midnight**: UK drill, 142 BPM (free)
+  - **Brass**: soul boom bap with horns, choir and bass guitar, 92 BPM (Pro later; free during beta)
+  - **Afterglow**: emotional UK garage with chopped vocals and piano, 132 BPM (Pro later)
+  - **Foundry**: sparse left-field hip-hop with metal percussion and dissonant chords, 100 BPM (Pro later)
+- Every loop follows the same arrangement, listed in `sections` in `beats.json`: **A (8 bars) → A2 (8) → BREAK (4) → BUILD (4, ending in a one-beat silent gap) → DROP (8) → SWITCH (8) → STRIP (4) → A2 (4)**, then back to A. There are volume moves, fills every 4 and 8 bars, and crashes on the drops.
 - `words.json`: 40 rhyme chains and 374 words. Each chain has a `sound`, a rhyme `type` (perfect / accent / slant / multi / dialect / cheap) and a one-line `note` explaining why the words rhyme. Each word has a `level` (1 simple, 2 mid, 3 advanced), part of speech and definition. Level 3 words also have an example bar (`ex`).
 
 ## Screens
 
 ### 1. Home
 - Big "Today's Cypher" button showing the streak flame and a count, e.g. "🔥 6".
-- Beat picker: 3 cards (name, style, BPM) that preview on tap.
+- Beat picker: 6 cards (name, style, BPM), sorted easiest first, that preview on tap.
 - "Free play" button.
 - Small links to Word Bank and Settings.
 
@@ -65,14 +69,21 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
    (If a chain has no word at the chosen level, use the nearest level.)
 5. **Learning words** from the Word Bank get 3× weight whenever their chain comes up.
 6. Don't repeat a chain until every eligible chain has been used. Never show the same word twice in one session.
-7. **Daily Cypher:** the random seed is the date, so everyone gets the same chains and beat on a given day. It's 3 minutes long, the beat rotates daily, and finishing at least 2 minutes extends the streak.
+7. **Daily Cypher:** the random seed is the date, so everyone gets the same chains and beat on a given day. It's 3 minutes long, the beat rotates daily, and finishing at least 2 minutes extends the streak. Start the Daily Cypher so its first DROP lands in the first 30 seconds.
 
 ## Audio
 
-- Use `AVAudioEngine`. Schedule the intro buffer, then schedule the loop buffer with `.loops` to start **sample-accurately** at the intro's end. No gap, no click.
-- Beat clock: `barSeconds` and `bpm` from `beats.json`, with beat 0 = the first sample of the loop. Drives the pulse, haptics and auto word-change.
+- Use `AVAudioEngine` with an `AVAudioPlayerNode`.
+- **Loop files are padded:** each loop `.mp3` has 1 second of extra audio before and after the loop. Read **exactly** `loopFrames` frames starting at `loopStartFrame` (both in `beats.json`) into one `AVAudioPCMBuffer`, and loop that buffer with `.loops`. That region is seamless by construction, so the loop has no click or gap.
+- Schedule the intro buffer, then the loop buffer immediately after it, so it plays sample-accurately with no gap.
+- Beat clock: `barSeconds` and `bpm`, with beat 0 = the first frame of the loop region. The clock drives the pulse, haptics, auto word-change and the section events below.
+- **React to the arrangement** (section map in `beats.json`):
+  - **BREAK:** the word dims to 60% and the chip says "BREAKDOWN · slow it down".
+  - **BUILD:** the pulse gets stronger each bar, and the screen goes black on the silent gap beat.
+  - **DROP:** start a new rhyme chain exactly on the drop. The word slams in with a flash in the beat's accent colour and a heavy haptic.
+  - **SWITCH:** start a new chain, and the chip says "SWITCH-UP".
 - Audio session: `.playAndRecord` with `.defaultToSpeaker` and `.allowBluetoothA2DP`, so the beat keeps playing with the mute switch on.
-- Use the `free` flag in `beats.json` to lock future premium beats.
+- Use the `free` flag in `beats.json` to lock premium beats later. Everything is unlocked during beta.
 
 ## Recording (simple version for V1)
 
@@ -83,7 +94,7 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ## Design
 
-- Black background (#000) and white text. Each beat has an accent colour: **Eski** acid green #B6FF3B, **Dusty** warm amber #FFB547, **Midnight** electric blue #4DA3FF.
+- Black background (#000) and white text. Each beat has an accent colour: **Eski** acid green #B6FF3B, **Dusty** warm amber #FFB547, **Midnight** electric blue #4DA3FF, **Brass** gold #F2C14E, **Afterglow** sunset pink #FF6FA3, **Foundry** steel #A8B3BD.
 - Word font: SF Pro Rounded Heavy (or a bold condensed face), all lowercase, huge.
 - Hardly any UI on the Cypher screen. The word is the whole app.
 - Haptics: light tap on next word, soft tick on each downbeat if enabled.
@@ -102,7 +113,8 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 ## After it's built
 
 Run a full build and check that:
-- the intro → loop transition has no gap,
+- the intro → loop transition and the loop wrap-around have no gap or click,
+- a new chain starts on each DROP,
 - tapping the word doesn't advance,
 - definitions don't pause audio,
 - the Word Bank fills from taps,
