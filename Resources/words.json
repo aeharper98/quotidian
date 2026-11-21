@@ -6,20 +6,20 @@
    "explain": "Everything from the stressed vowel onwards matches exactly."
   },
   "accent": {
-   "label": "Accent rhyme",
-   "explain": "Only rhymes in a British accent, because the r after a vowel goes silent."
+   "label": "Sound rhyme",
+   "explain": "Rhymes out loud even if the spelling says no: the r after a vowel goes quiet."
   },
   "slant": {
    "label": "Slant rhyme",
-   "explain": "The vowels match and the consonants are close. This is the backbone of UK flow."
+   "explain": "The vowels match and the consonants are close. Most great flows run on these."
   },
   "multi": {
    "label": "Multi",
    "explain": "Two or more syllables rhyme in a row. This is what makes a crowd react."
   },
   "dialect": {
-   "label": "Dialect rhyme",
-   "explain": "Works because of how London speech actually sounds (e.g. 'thing' becomes 'ting')."
+   "label": "Slang rhyme",
+   "explain": "Rhymes on how people actually talk, like 'thing' said as 'ting'."
   },
   "cheap": {
    "label": "Cheap rhyme",
@@ -31,7 +31,7 @@
    "id": "ah-muh",
    "sound": "AH-muh",
    "type": "accent",
-   "note": "Say it in a British accent: the r in 'farmer' and 'armour' disappears, so they rhyme perfectly with 'drama'.",
+   "note": "Say them out loud: the r in 'farmer' and 'armour' goes quiet, so they land right on 'drama'.",
    "words": [
     {
      "w": "drama",
@@ -101,7 +101,7 @@
    "id": "aw-duh",
    "sound": "AW-duh",
    "type": "accent",
-   "note": "UK speech drops the r, so 'order' sounds like 'aw-duh', a near-perfect match for 'water'. The t and d are close enough.",
+   "note": "Out loud, 'order' sounds like 'aw-duh', a near-perfect match for 'water'. The t and d are close enough.",
    "words": [
     {
      "w": "water",
@@ -264,7 +264,7 @@
    "id": "an-dum",
    "sound": "AN-dum",
    "type": "slant",
-   "note": "Assonance: the vowels match (AN-uh) and the consonants just sit close. This is the backbone of UK flow, because it's about sound, not spelling.",
+   "note": "Assonance: the vowels match (AN-uh) and the consonants just sit close. It's about sound, not spelling, and it's what most great flows run on.",
    "words": [
     {
      "w": "random",
@@ -294,7 +294,7 @@
      "w": "mandem",
      "level": 1,
      "pos": "slang",
-     "def": "A group of guys, your friends (London slang)."
+     "def": "A group of guys; your friends (slang)."
     },
     {
      "w": "ransom",
@@ -346,7 +346,7 @@
    "id": "ing",
    "sound": "ING",
    "type": "dialect",
-   "note": "In London speech 'thing' becomes 'ting' (the th turns into a t or f). Freestylers rhyme on how they actually talk.",
+   "note": "Said casually, 'thing' becomes 'ting'. Freestylers rhyme on how they actually talk, not how it's written.",
    "words": [
     {
      "w": "thing",
@@ -358,7 +358,7 @@
      "w": "ting",
      "level": 1,
      "pos": "slang",
-     "def": "London slang for 'thing'."
+     "def": "Slang for 'thing'."
     },
     {
      "w": "ring",
@@ -1082,7 +1082,7 @@
      "w": "kerfuffle",
      "level": 2,
      "pos": "noun",
-     "def": "A fuss or commotion (very British)."
+     "def": "A fuss or commotion."
     },
     {
      "w": "rebuttal",
@@ -1146,7 +1146,7 @@
      "w": "pantomime",
      "level": 2,
      "pos": "noun",
-     "def": "A comic British Christmas show with audience shouting."
+     "def": "A comic Christmas stage show where the audience shouts along."
     },
     {
      "w": "paradigm",
@@ -1305,7 +1305,7 @@
    "id": "ort",
    "sound": "ORT / AWT",
    "type": "accent",
-   "note": "In a British accent 'caught' and 'court' sound identical, because the r is silent. American rhyme lists miss this.",
+   "note": "Out loud, 'caught' and 'court' can sound identical, because the r goes quiet. Spelling hides rhymes like this.",
    "words": [
     {
      "w": "short",
@@ -1383,7 +1383,7 @@
    "id": "aw",
    "sound": "AW",
    "type": "accent",
-   "note": "'Saw', 'sore' and 'soar' all sound the same in Britain. That means hundreds of extra rhymes.",
+   "note": "'Saw', 'sore' and 'soar' can all sound the same out loud. That opens up hundreds of extra rhymes.",
    "words": [
     {
      "w": "more",
@@ -1459,7 +1459,7 @@
    "id": "ah",
    "sound": "AH",
    "type": "accent",
-   "note": "UK 'star', 'spa' and 'memoir' all end on the same open 'ah', so French borrowings fit right in.",
+   "note": "'Star', 'spa' and 'memoir' all end on the same open 'ah', so French borrowings fit right in.",
    "words": [
     {
      "w": "star",
@@ -1807,7 +1807,7 @@
      "w": "lark",
      "level": 2,
      "pos": "noun",
-     "def": "A bit of fun (British); also a songbird."
+     "def": "A bit of fun; also a songbird."
     },
     {
      "w": "monarch",
@@ -2070,7 +2070,7 @@
    "id": "ar-kee",
    "sound": "AR-kee",
    "type": "accent",
-   "note": "British 'khaki' is 'KAH-kee', the same sound as 'snarky'. Americans say 'KAK-ee', so this rhyme only works over here.",
+   "note": "Say 'khaki' as 'KAH-kee' and it lands on 'snarky'. How you pronounce a word can unlock a rhyme.",
    "words": [
     {
      "w": "khaki",
@@ -2192,7 +2192,7 @@
    "id": "ole",
    "sound": "OLE",
    "type": "perfect",
-   "note": "Perfect rhyme with some brilliant British-sounding vocab. 'Rigmarole' is a great word to drop.",
+   "note": "Perfect rhyme with some brilliant vocab. 'Rigmarole' is a great word to drop.",
    "words": [
     {
      "w": "soul",

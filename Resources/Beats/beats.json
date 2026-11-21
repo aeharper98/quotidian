@@ -123,7 +123,7 @@
     {
       "id": "midnight",
       "name": "Midnight",
-      "style": "UK drill",
+      "style": "Drill",
       "bpm": 142,
       "key": "F# minor",
       "blurb": "Sliding 808s, skippy hats, dark bells. Hardest to ride.",
@@ -243,7 +243,7 @@
     {
       "id": "afterglow",
       "name": "Afterglow",
-      "style": "UK garage",
+      "style": "Garage",
       "bpm": 132,
       "key": "F# minor",
       "blurb": "Emotional piano, chopped vocals, 2-step swing and a big drop.",

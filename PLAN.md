@@ -4,7 +4,7 @@
 
 ## The idea
 
-A black screen with one huge word. The beat drops. You rap. Tap anywhere and the next word appears, and it **rhymes with the last one**, the British way (accent rhymes, slant rhymes, multis). Tap the word itself to see what it means without stopping the beat. Words you had to look up come back in later sessions until you know them.
+A black screen with one huge word. The beat drops. You rap. Tap anywhere and the next word appears, and it **rhymes with the last one** by sound, not spelling (sound rhymes, slant rhymes, multis). Tap the word itself to see what it means without stopping the beat. Words you had to look up come back in later sessions until you know them.
 
 ## App Store listing
 
@@ -18,9 +18,9 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 - `Beats/beats.json` plus **6 beats**. Each one is an **intro** (2 filtered bars and a riser, played once) and a **48-bar arranged loop** (`.mp3`, 80–130 s). All audio is synthesised from code, so we own 100% of it.
   - **Eski**: grime, 140 BPM (free)
   - **Dusty**: boom bap, 90 BPM, the beginner beat (free)
-  - **Midnight**: UK drill, 142 BPM (free)
+  - **Midnight**: drill, 142 BPM (free)
   - **Brass**: soul boom bap with horns, choir and bass guitar, 92 BPM (Pro later; free during beta)
-  - **Afterglow**: emotional UK garage with chopped vocals and piano, 132 BPM (Pro later)
+  - **Afterglow**: emotional garage with chopped vocals and piano, 132 BPM (Pro later)
   - **Foundry**: sparse left-field hip-hop with metal percussion and dissonant chords, 100 BPM (Pro later)
 - Every loop follows the same arrangement, listed in `sections` in `beats.json`: **A (8 bars) → A2 (8) → BREAK (4) → BUILD (4, ending in a one-beat silent gap) → DROP (8) → SWITCH (8) → STRIP (4) → A2 (4)**, then back to A. There are volume moves, fills every 4 and 8 bars, and crashes on the drops.
 - `words.json`: 40 rhyme chains and 374 words. Each chain has a `sound`, a rhyme `type` (perfect / accent / slant / multi / dialect / cheap) and a one-line `note` explaining why the words rhyme. Each word has a `level` (1 simple, 2 mid, 3 advanced), part of speech and definition. Level 3 words also have an example bar (`ex`).
@@ -29,7 +29,7 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ### 0. First-launch walkthrough (4 steps, skippable, reopen from "How it works")
 1. **"One word. One beat. You rap."** What the app is, in two sentences.
-2. **"Tap anywhere for the next rhyme."** A practice pad you actually tap: drama → karma → farmer → armour. Then it explains that in a British accent the r goes silent, which is why they rhyme.
+2. **"Tap anywhere for the next rhyme."** A practice pad you actually tap: drama → karma → farmer → armour. Then it explains that out loud the r goes quiet, which is why they rhyme.
 3. **"Tap the word to learn it."** Tap *quotidian* to see its meaning: "saved to your word bank".
 4. **"How hard?"** Pick Simple, Mixed or Advanced, each with example words. A tip to turn the volume up and the silent switch off. The **"Drop the beat"** button starts the first session on Dusty, the slowest beat.
 
@@ -51,19 +51,21 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - **Tap anywhere except the word:** go to the next word, with a quick scale-in animation and a light haptic.
 - **Tap the word:** a definition card slides up from the bottom (word, part of speech, definition, example bar if present). It fades after 4 seconds or on the next tap. **The beat never stops.** Tapping also saves the word to the Word Bank.
 - **Pulse:** the word gently scales (1.0 → 1.04) on every beat, with a bigger pulse on bar 1, synced to the beat clock.
-- **New chain:** when the chain changes, a small chip at the top shows the rhyme type (e.g. "ACCENT RHYME") with the chain's `note` underneath in small text for 3 seconds. This is how the app teaches British rhyme without a tutorial.
+- **New chain:** when the chain changes, a small chip at the top shows the rhyme type (e.g. "SOUND RHYME") with the chain's `note` underneath in small text for 3 seconds. This is how the app teaches rhyme without a tutorial.
 - **Next-word preview (setting, on by default):** the upcoming word shows faintly at 25% opacity under the main word, so you can plan a bar ahead.
 - Top bar, small and low-contrast: ✕ to end, timer, record toggle (●).
-- End of session: summary screen with words seen, words looked up (tap to review), time, streak, and recording playback if you recorded.
+- **End of session:** a summary with time, words seen and words looked up, then **every word from the session** in order, each with its definition and example bar. Words you looked up are tagged, and each row has a **☆ favourite** button. If you recorded, the recording plays at the top.
 
 ### 3. Word Bank
+- Two tabs: **★ Favourites** and **Looked up**.
+- **Favourites:** any word you star (from the summary, the Word of the Day card or the bank). Favourites get 3× weight in normal sessions. **Practise favourites** starts a session where each new chain opens on one of your favourites, so you relearn them in rhyme.
 - Every word you tapped, newest first, with its definition and the chain it came from.
 - Status: **Learning** (tapped) or **Known**. A word becomes Known once you've seen it 3 times in later sessions without tapping it.
 - Tap a word to hear the example bar read with text-to-speech.
 
 ### 4. Settings
 - **Vocabulary:** a 3-stop slider, **Simple / Mixed / Advanced** (default Mixed). Controls how often advanced words come up.
-- **Rhyme style:** Strict (perfect and multi chains only) or **UK loose** (everything, the default).
+- **Rhyme style:** Strict (perfect and multi chains only) or **Loose** (everything, the default).
 - **Word change:** Tap (default) / Every bar / Every 2 bars. Auto modes change the word exactly on the downbeat.
 - **Next-word preview:** on/off.
 - **Haptic on beat:** on/off.
@@ -107,12 +109,24 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - **Recording in this mode** uses `.playAndRecord` with `.mixWithOthers`, `.defaultToSpeaker` and `.allowBluetoothA2DP`. The mic hears the music from the speaker, so the recording includes it. With headphones you get the voice only. Apps aren't allowed to capture another app's audio directly, so we don't try.
 - Streaming apps don't give us the song's BPM, so tap tempo is the only way to get it.
 
-## Recording (simple version for V1)
+## Recording: audio or video, only on your phone
 
-- The record toggle on the Cypher screen records the **mic only** (a separate file, `.m4a`) while the beat plays.
+- **Record** in a session has three states: **Off / Audio / Video**. Video uses the selfie camera in a small corner preview, so the giant word stays the main thing on screen.
+- **Audio:** an `AVAudioEngine` input tap writes the mic to `.m4a`. **Video:** `AVCaptureSession` (front camera + mic) writes `.mov`.
+- We log the **exact loop position when recording starts** and a **timestamp for every word shown**. When you play back or export:
+  - the beat is mixed under your voice, perfectly in time (offline render / `AVMutableComposition`),
+  - for video, the words can appear on screen at the moments they came up (`AVVideoCompositionCoreAnimationTool`). That's the shareable clip.
+- **Storage: on the device only.**
+  - Files go in the app's `Application Support/Recordings` folder, marked `isExcludedFromBackup = true`, so they never go to iCloud backups either.
+  - No uploads and no cloud features. Nothing leaves the phone unless you tap **Share** or **Save to Photos** yourself. (If iCloud Photos is on, Apple syncs Photos; we say this beside the button.)
+- A **Recordings** screen lists every take with its date, beat, length and size, plus total storage used. Swipe to delete. Takes are kept until you delete them, with no automatic clean-up.
+- Permissions are asked only when you first pick Audio (mic) or Video (camera + mic), never at launch.
+
+## Recording: technical notes
+
 - Show a one-time tip: "Use headphones for a cleaner recording."
-- Playback on the summary screen plays the voice and beat together, starting in sync. Save the start offset (seconds into the loop when recording began).
-- Keep the last 10 recordings, with a share sheet to export a mixed file.
+- Record the voice (and camera) separately from the beat, then mix at playback or export. That way the beat stays clean and in sync without the speaker feeding back into the mic.
+- In **own-music mode** we can't add the beat afterwards, so the mic captures whatever is playing out loud.
 
 ## Design
 
@@ -159,6 +173,10 @@ Next only unlocks once you've done the step's tap, so nobody reaches a session w
 - [ ] Bundle ID, app record and API key secrets
 - [ ] Native app, cloud build and TestFlight
 - [ ] CarPlay audio entitlement request
+
+## Copy rule
+
+Never frame the app as "British" or "UK" rap, and don't tag words as British or London slang. Explain *why* words rhyme (the r goes quiet, the vowels match, how people actually say it), not *where* the rhyme comes from. Genre names drop the UK prefix: Drill, Garage.
 
 ## Not in V1 (planned)
 

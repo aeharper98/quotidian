@@ -9,6 +9,6 @@ html,body{margin:0;background:#0b0b0c}
 </style>
 <div id="list"></div>
 <script>
-const S=[["reveal","One word. Then the beat <em>drops.</em>"],["rhyme","Rhymes the <em>British</em> way."],["def","Tap the word. <em>Learn</em> the word."],["home","A new word <em>every day.</em>"],["bank","Look it up once. <em>Keep it.</em>"],["beats","Six original beats. Or <em>your own music.</em>"]];
+const S=[["reveal","One word. Then the beat <em>drops.</em>"],["rhyme","Rhymes by <em>sound,</em> not spelling."],["def","Tap the word. <em>Learn</em> the word."],["home","A new word <em>every day.</em>"],["bank","Look it up once. <em>Keep it.</em>"],["beats","Six original beats. Or <em>your own music.</em>"]];
 for(const [i,[f,h]] of S.entries()){const d=document.createElement('div');d.className='s';d.id='s'+i;d.innerHTML=`<h1>${h}</h1><img src="raw-${f}.png">`;document.getElementById('list').appendChild(d);}
 </script>

@@ -108,10 +108,18 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 .stats b { display: block; font-family: var(--mono); font-size: 24px; font-variant-numeric: tabular-nums; }
 .stats span { font-size: 12px; color: var(--muted); }
 .list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-.list div { background: var(--bg); padding: 12px 14px; }
+.list > div { background: var(--bg); padding: 12px 14px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; }
+.list > div > div { min-width: 0; }
+.star { font-size: 22px; line-height: 1; padding: 4px 2px 4px 10px; color: var(--muted); }
+.star[aria-pressed="true"] { color: var(--accent); }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tabs button { border: 1px solid var(--line); border-radius: 99px; padding: 8px 14px; font-size: 14px; color: var(--muted); }
+.tabs button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); font-weight: 600; }
+.practice { background: var(--accent); color: #0b0b0c; border-radius: 14px; padding: 14px 18px; font-weight: 600; justify-self: start; align-self: flex-start; }
+.wotd .whead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .list b { font-family: var(--display); font-size: 18px; }
 .list .tag { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: 8px; }
-.list .tag.known { color: var(--accent); }
+.list .tag.known, .list .tag.fav { color: var(--accent); }
 .list p { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; }
 .empty { color: var(--muted); font-size: 14px; }
 .back { align-self: flex-start; padding: 10px 16px; }
@@ -159,7 +167,7 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 
   <div class="wotd" id="wotd" hidden>
     <div class="label"><span>Word of the day</span><span id="wDate"></span></div>
-    <div class="ww" id="wW"></div>
+    <div class="whead"><div class="ww" id="wW"></div><button class="star" id="wStar" aria-label="Favourite">☆</button></div>
     <div class="wp"><span id="wPos"></span> · rhymes on <span id="wSound"></span></div>
     <p id="wDef"></p>
     <p class="ex" id="wEx"></p>
@@ -221,13 +229,15 @@ button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent
 <section id="summary" class="screen" hidden>
   <h2 class="big" id="sumTitle">Session done</h2>
   <div class="stats"><div><b id="sTime">0:00</b><span>time</span></div><div><b id="sSeen">0</b><span>words</span></div><div><b id="sLook">0</b><span>looked up</span></div></div>
-  <div><div class="label"><span>Words you looked up</span></div><div class="list" id="sList"></div></div>
+  <div><div class="label"><span>Every word this session</span><span>☆ to save</span></div><div class="list" id="sList"></div></div>
   <button class="pill back" id="sumHome">Back</button>
 </section>
 
 <section id="bank" class="screen" hidden>
   <h2 class="big">Word bank</h2>
-  <p class="empty" style="margin:0">Words you tap go here. A word counts as known once you've seen it 3 more times without tapping it.</p>
+  <div class="tabs" id="bankTabs"><button data-t="fav">★ Favourites</button><button data-t="looked">Looked up</button></div>
+  <p class="empty" id="bankHelp" style="margin:0"></p>
+  <button class="practice" id="practiceFavs" hidden>Practise favourites</button>
   <div class="list" id="bList"></div>
   <button class="pill back" id="bankHome">Back</button>
 </section>
@@ -244,6 +254,9 @@ const store = {
 let BEATS = [], CHAINS = [], TYPES = {};
 const settings = Object.assign({ beat: "dusty", vocab: "mixed", mode: "tap", ownBpm: 90 }, store.get("settings", {}));
 let bank = store.get("bank", {});           // word -> {status, seen, def, pos}
+let favs = store.get("favs", {});           // word -> {at}
+const WORDS = {};                           // word -> {w, c}
+let bankTab = "fav";
 let streak = store.get("streak", { count: 0, last: null });
 
 // ---------- home ----------
@@ -277,7 +290,8 @@ function renderHome() {
   const live = streak.last === today || streak.last === dayKey(-1);
   $("streak").textContent = `🔥 ${live ? streak.count : 0} day streak`;
   const n = Object.keys(bank).length, known = Object.values(bank).filter(w => w.status === "known").length;
-  $("bankCount").textContent = n ? `${n} words · ${known} known` : "";
+  const nf = Object.keys(favs).length;
+  $("bankCount").textContent = [nf ? `★ ${nf}` : "", n ? `${n} looked up · ${known} known` : ""].filter(Boolean).join(" · ");
 }
 function save() { store.set("settings", settings); }
 $("bpmDown").onclick = () => { settings.ownBpm = Math.max(60, settings.ownBpm - 1); save(); renderHome(); };
@@ -317,7 +331,8 @@ function wordOfDay(off = 0) {
 function renderWotd() {
   const d = wordOfDay(); if (!d) return;
   $("wotd").hidden = false;
-  $("wW").textContent = d.w.w; $("wPos").textContent = d.w.pos; $("wSound").textContent = d.c.sound;
+  $("wW").textContent = d.w.w;
+  $("wStar").textContent = favs[d.w.w] ? "★\uFE0E" : "☆\uFE0E"; $("wStar").setAttribute("aria-pressed", !!favs[d.w.w]); $("wPos").textContent = d.w.pos; $("wSound").textContent = d.c.sound;
   $("wDef").textContent = d.w.def; $("wEx").textContent = d.w.ex ? `“${d.w.ex}”` : ""; $("wEx").hidden = !d.w.ex;
   $("wDate").textContent = new Date().toLocaleDateString(undefined, { day: "numeric", month: "short" });
 }
@@ -336,7 +351,7 @@ function buildChain(c, forced) {
     let cands = [];
     for (const L of order) { cands = left.filter(w => w.level === L); if (cands.length) break; }
     if (!cands.length) cands = left;
-    const weights = cands.map(w => bank[w.w] && bank[w.w].status === "learning" ? 3 : 1);
+    const weights = cands.map(w => (favs[w.w] || (bank[w.w] && bank[w.w].status === "learning")) ? 3 : 1);
     let r = rnd() * weights.reduce((a, b) => a + b), i = 0;
     while ((r -= weights[i]) > 0) i++;
     out.push(cands[i]);
@@ -349,6 +364,7 @@ function newChain() {
     for (let i = S.queue.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [S.queue[i], S.queue[j]] = [S.queue[j], S.queue[i]]; }
   }
   let forced = null;
+  if (!S.forceFirst && S.favQueue && S.favQueue.length) S.forceFirst = S.favQueue.shift();   // practise favourites: each chain opens on one
   if (S.forceFirst) { forced = S.forceFirst.w; S.chain = S.forceFirst.c; S.queue = S.queue.filter(c => c !== S.chain); S.forceFirst = null; }
   else S.chain = S.queue.pop();
   S.words = buildChain(S.chain, forced); S.pos = 0;
@@ -369,6 +385,7 @@ function next() {
 }
 function showWord() {
   const w = S.words[S.pos]; S.used.add(w.w); S.seen++; S.tappedThis = false;
+  if (!S.history.includes(w)) S.history.push(w);
   const el = $("word"); el.textContent = w.w; fit(el);
   el.classList.remove("in"); void el.offsetWidth; el.classList.add("in");
   updateGhost();
@@ -481,10 +498,11 @@ function tick() {
 function flash() { const f = $("flash"); f.classList.remove("go"); void f.offsetWidth; f.classList.add("go"); }
 function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
 
-async function start(daily, withWotd) {
-  Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], words: null, pos: 0, started: false, ready: false, t0: null,
+async function start(daily, withWotd, favMode) {
+  Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], history: [], words: null, pos: 0, started: false, ready: false, t0: null,
     lastBeat: -1, lastBar: -1, lastSec: null, lastCount: null, daily, chain: null,
-    forceFirst: (daily || withWotd) ? wordOfDay() : null, wotd: !!(daily || withWotd) });
+    forceFirst: (daily || withWotd) ? wordOfDay() : null, wotd: !!(daily || withWotd),
+    favQueue: favMode ? Object.keys(favs).filter(k => WORDS[k]).map(k => WORDS[k]).sort(() => Math.random() - 0.5) : [] });
   let beatId = settings.beat;
   if (daily) {
     const day = localDay();
@@ -517,7 +535,7 @@ function reveal() {
   S.ready = true;
   newChain();
   const w = S.words[0], t = TYPES[S.chain.type];
-  showChip(S.wotd ? "WORD OF THE DAY" : "YOUR FIRST WORD", t ? `${t.label} chain · ${S.chain.sound}` : "", 60000);
+  showChip(S.wotd ? "WORD OF THE DAY" : S.favQueue.length || favs[w.w] ? "FROM YOUR FAVOURITES" : "YOUR FIRST WORD", t ? `${t.label} chain · ${S.chain.sound}` : "", 60000);
   renderDef(w, true);
   updateGhost("tap anywhere to drop the beat");
 }
@@ -549,20 +567,49 @@ function finish() {
   }
   $("sumTitle").textContent = S.daily ? (el >= 120 ? "Daily cypher done" : "Ended early") : "Session done";
   $("sTime").textContent = fmt(el); $("sSeen").textContent = S.seen; $("sLook").textContent = S.looked.length;
-  renderWordList($("sList"), S.looked.map(w => ({ w: w.w, def: w.def, ex: w.ex })), "You didn't look anything up. Tap the word next time to see what it means.");
+  renderWordList($("sList"), S.history.map(w => ({ w: w.w, def: w.def, ex: w.ex, looked: S.looked.includes(w) })), "No words this time. Tap anywhere during a session to move through words.");
   show("summary");
 }
-function renderWordList(el, items, emptyText) {
+function toggleFav(word) {
+  if (favs[word]) delete favs[word]; else favs[word] = { at: Date.now() };
+  store.set("favs", favs);
+}
+function starBtn(word, onChange) {
+  const b = document.createElement("button"); b.className = "star";
+  const sync = () => { b.textContent = favs[word] ? "★\uFE0E" : "☆\uFE0E"; b.setAttribute("aria-pressed", !!favs[word]); b.setAttribute("aria-label", (favs[word] ? "Remove " : "Favourite ") + word); };
+  b.onclick = e => { e.stopPropagation(); toggleFav(word); sync(); onChange && onChange(); };
+  sync(); return b;
+}
+function renderWordList(el, items, emptyText, onChange) {
   el.innerHTML = "";
   if (!items.length) { el.innerHTML = `<div><p class="empty"></p></div>`; el.querySelector("p").textContent = emptyText; return; }
   for (const it of items) {
     const d = document.createElement("div");
-    d.innerHTML = `<b></b><span class="tag"></span><p></p>`;
+    d.innerHTML = `<div><b></b><span class="tag"></span><p></p></div>`;
     d.querySelector("b").textContent = it.w;
     const tag = d.querySelector(".tag");
     if (it.status) { tag.textContent = it.status === "known" ? "KNOWN" : `LEARNING · ${it.seen || 0}/3`; tag.classList.toggle("known", it.status === "known"); }
+    else if (it.looked) { tag.textContent = "LOOKED UP"; tag.classList.add("fav"); }
     d.querySelector("p").textContent = it.def + (it.ex ? `  “${it.ex}”` : "");
+    d.appendChild(starBtn(it.w, onChange));
     el.appendChild(d);
+  }
+}
+function renderBank() {
+  for (const b of $("bankTabs").children) { b.setAttribute("aria-pressed", b.dataset.t === bankTab); b.onclick = () => { bankTab = b.dataset.t; renderBank(); }; }
+  let items;
+  if (bankTab === "fav") {
+    items = Object.entries(favs).sort((a, b) => b[1].at - a[1].at).map(([k]) => {
+      const x = WORDS[k] ? WORDS[k].w : bank[k] || {}; return { w: k, def: x.def || "", ex: x.ex };
+    });
+    $("bankHelp").textContent = "Star any word to keep it here. Favourites come back more often, or practise them all in one session.";
+    $("practiceFavs").hidden = !items.length;
+    renderWordList($("bList"), items, "No favourites yet. Tap ☆ on any word after a session or on the Word of the Day.", () => { if (bankTab === "fav") renderBank(); });
+  } else {
+    items = Object.entries(bank).sort((a, b) => (b[1].at || 0) - (a[1].at || 0)).map(([w, e]) => ({ w, ...e }));
+    $("bankHelp").textContent = "Words you tapped during a session. A word counts as known once you've seen it 3 more times without tapping it.";
+    $("practiceFavs").hidden = true;
+    renderWordList($("bList"), items, "Nothing yet. Tap a word during a session to save it here.");
   }
 }
 function dayKey(off = 0) { const d = new Date(Date.now() + off * 864e5); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
@@ -588,11 +635,9 @@ $("startFree").onclick = () => start(false);
 $("wotdGo").onclick = () => start(false, true);
 $("sumHome").onclick = () => show("home");
 $("bankHome").onclick = () => show("home");
-$("openBank").onclick = () => {
-  const items = Object.entries(bank).sort((a, b) => (b[1].at || 0) - (a[1].at || 0)).map(([w, e]) => ({ w, ...e }));
-  renderWordList($("bList"), items, "Nothing yet. Tap a word during a cypher to save it here.");
-  show("bank");
-};
+$("openBank").onclick = () => { bankTab = Object.keys(favs).length ? "fav" : "looked"; show("bank"); renderBank(); };
+$("practiceFavs").onclick = () => start(false, false, true);
+$("wStar").onclick = () => { const d = wordOfDay(); if (d) { toggleFav(d.w.w); renderWotd(); } };
 window.addEventListener("resize", () => { if (!$("cypher").hidden && $("word").textContent) fit($("word")); });
 
 // ---------- walkthrough ----------
@@ -602,7 +647,7 @@ const STEPS = [
     pad: null },
   { title: "Tap anywhere for the next rhyme.",
     body: "Try it. Tap the black box.",
-    pad: { words: ["drama", "karma", "farmer", "armour"], done: "In a British accent the r goes silent, so <b>farmer</b> and <b>armour</b> rhyme with <b>drama</b>. Quotidian rhymes the way UK MCs do: by sound, not spelling." } },
+    pad: { words: ["drama", "karma", "farmer", "armour"], done: "Say them out loud: the r goes quiet, so <b>farmer</b> and <b>armour</b> land on <b>drama</b>. Quotidian rhymes by sound, not spelling." } },
   { title: "Tap the word to learn it.",
     body: "The beat never stops while you read. Any word you look up comes back in later sessions until you know it.",
     pad: { def: { w: "quotidian", pos: "adjective", def: "Everyday; ordinary; happening every day." } } },
@@ -669,6 +714,7 @@ $("openIntro").onclick = openIntro;
 // ---------- boot ----------
 Promise.all([fetch("beats/beats.json").then(r => r.json()), fetch("words.json").then(r => r.json())]).then(([b, w]) => {
   BEATS = b.beats; CHAINS = w.chains; TYPES = w.rhymeTypes;
+  for (const c of CHAINS) for (const x of c.words) WORDS[x.w] = { w: x, c };
   if (!BEATS.some(x => x.id === settings.beat) && settings.beat !== "own") settings.beat = BEATS[0].id;
   if (!store.get("onboarded", false)) openIntro(); else show("home");
 }).catch(() => { show("home"); $("beatList").innerHTML = '<div class="beat"><span></span><span class="st">Couldn\'t load beats. Reload the page.</span></div>'; });

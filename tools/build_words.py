@@ -4,10 +4,10 @@ sys.path.insert(0, sys.argv[1]); from chains import CHAINS
 
 TYPES = {
  "perfect": ("Perfect rhyme", "Everything from the stressed vowel onwards matches exactly."),
- "accent":  ("Accent rhyme", "Only rhymes in a British accent, because the r after a vowel goes silent."),
- "slant":   ("Slant rhyme", "The vowels match and the consonants are close. This is the backbone of UK flow."),
+ "accent":  ("Sound rhyme", "Rhymes out loud even if the spelling says no: the r after a vowel goes quiet."),
+ "slant":   ("Slant rhyme", "The vowels match and the consonants are close. Most great flows run on these."),
  "multi":   ("Multi", "Two or more syllables rhyme in a row. This is what makes a crowd react."),
- "dialect": ("Dialect rhyme", "Works because of how London speech actually sounds (e.g. 'thing' becomes 'ting')."),
+ "dialect": ("Slang rhyme", "Rhymes on how people actually talk, like 'thing' said as 'ting'."),
  "cheap":   ("Cheap rhyme", "Easy and predictable. Good for warming up, but go for something rarer."),
 }
 errs, out, seen = [], [], collections.Counter()

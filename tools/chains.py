@@ -1,11 +1,11 @@
-# Quotidian rhyme chains (hand-curated, British-accent aware).
+# Quotidian rhyme chains (hand-curated; rhymes by how words sound out loud, not spelling).
 # Line format:  word | level (1 simple, 2 mid, 3 advanced) | part of speech | definition | example bar (level 3)
-# type: perfect, accent (works because UK speech drops the r), slant (vowel match), multi (2+ syllables rhyme),
-#       dialect (London/MLE pronunciation), cheap (easy rhyme - use sparingly)
+# type: perfect, accent ("sound rhyme": works out loud because the r after a vowel goes quiet), slant (vowel match),
+#       multi (2+ syllables rhyme), dialect (how people actually talk, e.g. ting), cheap (easy rhyme - use sparingly)
 
 CHAINS = [
 dict(id="ah-muh", sound="AH-muh", type="accent",
-     note="Say it in a British accent: the r in 'farmer' and 'armour' disappears, so they rhyme perfectly with 'drama'.",
+     note="Say them out loud: the r in 'farmer' and 'armour' goes quiet, so they land right on 'drama'.",
      words="""
 drama|1|noun|Exciting, emotional events, or a play for stage or screen.
 karma|1|noun|The idea that what you put out comes back to you.
@@ -19,7 +19,7 @@ panorama|3|noun|A wide, unbroken view of a whole area.|Top floor of the block, I
 dharma|3|noun|In Hindu and Buddhist thought, your true duty or path in life.|Stay on my dharma, I don't need the drama
 """),
 dict(id="aw-duh", sound="AW-duh", type="accent",
-     note="UK speech drops the r, so 'order' sounds like 'aw-duh', a near-perfect match for 'water'. The t and d are close enough.",
+     note="Out loud, 'order' sounds like 'aw-duh', a near-perfect match for 'water'. The t and d are close enough.",
      words="""
 water|1|noun|The clear liquid that falls as rain and fills rivers and seas.
 order|1|noun|A request for something, or things arranged neatly.
@@ -50,13 +50,13 @@ invidious|3|adjective|Unfair, and likely to cause resentment.|Comparing me to th
 viridian|3|noun|A deep blue-green colour.|Viridian waves when the beat goes oceanic
 """),
 dict(id="an-dum", sound="AN-dum", type="slant",
-     note="Assonance: the vowels match (AN-uh) and the consonants just sit close. This is the backbone of UK flow, because it's about sound, not spelling.",
+     note="Assonance: the vowels match (AN-uh) and the consonants just sit close. It's about sound, not spelling, and it's what most great flows run on.",
      words="""
 random|1|adjective|Happening without a plan or pattern.
 anthem|1|noun|A song people sing together with pride.
 handsome|1|adjective|Good-looking.
 panda|1|noun|A black-and-white bear from China.
-mandem|1|slang|A group of guys, your friends (London slang).
+mandem|1|slang|A group of guys; your friends (slang).
 ransom|2|noun|Money demanded to free someone held captive.
 phantom|2|noun|A ghost, or something that isn't really there.
 tandem|2|noun|Two things working together, side by side.
@@ -66,10 +66,10 @@ candour|3|noun|Being open, honest and frank.|Speak with candour, no propaganda
 memorandum|3|noun|A written note, often an official record or agreement.|Sign the memorandum, me and the mandem
 """),
 dict(id="ing", sound="ING", type="dialect",
-     note="In London speech 'thing' becomes 'ting' (the th turns into a t or f). Freestylers rhyme on how they actually talk.",
+     note="Said casually, 'thing' becomes 'ting'. Freestylers rhyme on how they actually talk, not how it's written.",
      words="""
 thing|1|noun|An object, or a matter or situation.
-ting|1|slang|London slang for 'thing'.
+ting|1|slang|Slang for 'thing'.
 ring|1|noun|A circle, often jewellery worn on a finger.
 king|1|noun|A male ruler of a country.
 sting|1|verb|To cause a sharp pain.
@@ -208,7 +208,7 @@ cuddle|1|verb|To hug lovingly.
 puddle|1|noun|A small pool of rainwater.
 subtle|2|adjective|Delicate, not obvious.
 rubble|2|noun|Broken stone from a ruined building.
-kerfuffle|2|noun|A fuss or commotion (very British).
+kerfuffle|2|noun|A fuss or commotion.
 rebuttal|3|noun|An argument that disproves another.|Here's my rebuttal, it's subtle but it's trouble
 befuddle|3|verb|To confuse completely.|Wordplay to befuddle, leave 'em in a muddle
 """),
@@ -221,7 +221,7 @@ crime|1|noun|An illegal act.
 climb|1|verb|To go up.
 prime|1|adjective|The best; at your peak.
 sublime|2|adjective|So excellent it's almost spiritual.
-pantomime|2|noun|A comic British Christmas show with audience shouting.
+pantomime|2|noun|A comic Christmas stage show where the audience shouts along.
 paradigm|3|noun|A model or way of seeing things.|Shift the paradigm every time I rhyme
 maritime|3|adjective|To do with the sea and ships.|Maritime flow, I'm sailing through time
 """),
@@ -253,7 +253,7 @@ meritocracy|3|noun|A system where people rise by ability.|Freestyle's a meritocr
 theocracy|3|noun|A state ruled by religious leaders.|Mic is my church, call it theocracy
 """),
 dict(id="ort", sound="ORT / AWT", type="accent",
-     note="In a British accent 'caught' and 'court' sound identical, because the r is silent. American rhyme lists miss this.",
+     note="Out loud, 'caught' and 'court' can sound identical, because the r goes quiet. Spelling hides rhymes like this.",
      words="""
 short|1|adjective|Not long or tall.
 sport|1|noun|A competitive game or activity.
@@ -268,7 +268,7 @@ juggernaut|3|noun|A huge, unstoppable force; also a big lorry.|Juggernaut flow, 
 onslaught|3|noun|A fierce, overwhelming attack.|Bar onslaught, every line's taught
 """),
 dict(id="aw", sound="AW", type="accent",
-     note="'Saw', 'sore' and 'soar' all sound the same in Britain. That means hundreds of extra rhymes.",
+     note="'Saw', 'sore' and 'soar' can all sound the same out loud. That opens up hundreds of extra rhymes.",
      words="""
 more|1|adjective|A greater amount.
 floor|1|noun|What you stand on.
@@ -283,7 +283,7 @@ rapport|3|noun|A close, easy connection with people.|Got rapport with the crowd,
 abhor|3|verb|To hate intensely.|Fake MCs I abhor, keep it raw
 """),
 dict(id="ah", sound="AH", type="accent",
-     note="UK 'star', 'spa' and 'memoir' all end on the same open 'ah', so French borrowings fit right in.",
+     note="'Star', 'spa' and 'memoir' all end on the same open 'ah', so French borrowings fit right in.",
      words="""
 star|1|noun|A burning sun far away; or a famous person.
 car|1|noun|A vehicle with four wheels.
@@ -353,7 +353,7 @@ park|1|noun|A green public space.
 mark|1|noun|A sign, score or stain.
 spark|1|noun|A tiny flash of fire.
 shark|1|noun|A big predatory fish.
-lark|2|noun|A bit of fun (British); also a songbird.
+lark|2|noun|A bit of fun; also a songbird.
 monarch|2|noun|A king or queen.
 embark|2|verb|To begin a journey.
 matriarch|3|noun|A woman who heads a family or group.|Nan's the matriarch, she lit the spark
@@ -404,7 +404,7 @@ sagacious|3|adjective|Wise, with good judgement.|Sagacious with the bars, gracio
 advantageous|3|adjective|Giving you an edge.|Home crowd's advantageous
 """),
 dict(id="ar-kee", sound="AR-kee", type="accent",
-     note="British 'khaki' is 'KAH-kee', the same sound as 'snarky'. Americans say 'KAK-ee', so this rhyme only works over here.",
+     note="Say 'khaki' as 'KAH-kee' and it lands on 'snarky'. How you pronounce a word can unlock a rhyme.",
      words="""
 khaki|1|noun|A dull yellow-brown colour.
 snarky|1|adjective|Sarcastic and rude.
@@ -429,7 +429,7 @@ august|3|adjective|Respected and impressive (stress on 'GUST').|August company, 
 wanderlust|3|noun|A strong desire to travel.|Wanderlust, leave the haters in the dust
 """),
 dict(id="ole", sound="OLE", type="perfect",
-     note="Perfect rhyme with some brilliant British-sounding vocab. 'Rigmarole' is a great word to drop.",
+     note="Perfect rhyme with some brilliant vocab. 'Rigmarole' is a great word to drop.",
      words="""
 soul|1|noun|Your inner self.
 goal|1|noun|An aim; or scoring in football.

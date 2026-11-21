@@ -3,7 +3,7 @@
 Learn freestyle rap and new words, one tap at a time. See [PLAN.md](PLAN.md) for the V1 build plan.
 
 - `Resources/Beats/`: 6 beats (intro and a 48-bar arranged loop, padded for seamless looping) plus `beats.json` metadata and the section map
-- `Resources/words.json`: 40 British-aware rhyme chains, 374 words with definitions
+- `Resources/words.json`: 40 rhyme chains (rhymes by sound, not spelling), 374 words with definitions
 - `web/index.html`: playable web prototype of the mechanics (same beats and words)
 - `previews/`: mp3s to listen to each beat (intro → drop → loop ×2)
 - `tools/`: scripts that generate the above
