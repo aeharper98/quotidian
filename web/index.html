@@ -1,0 +1,504 @@
+<title>Quotidian</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one-screen app. Home reads like a dictionary entry; the cypher is a black stage with one giant word. */
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0c;
+  --stage: #000;
+  --fg: #f4f2ee;
+  --muted: #8d8a85;
+  --line: #2a2928;
+  --card: #161515;
+  --accent: #b6ff3b;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow: hidden; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none;
+}
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.screen { height: 100%; display: flex; flex-direction: column; }
+.screen[hidden] { display: none !important; }
+
+/* ---------- home ---------- */
+#home { overflow-y: auto; gap: 26px; padding-block: 20px 28px; max-width: 560px; margin: 0 auto; }
+.entry h1 { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 15vw, 76px); letter-spacing: -0.03em; line-height: .9; margin: 0; }
+.entry .pron { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 10px; display: flex; gap: 12px; flex-wrap: wrap; }
+.entry p { margin: 10px 0 0; color: var(--fg); line-height: 1.45; max-width: 46ch; }
+.entry p i { color: var(--muted); }
+.label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between; }
+.beats { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.beat { display: grid; grid-template-columns: 10px 1fr auto; gap: 14px; align-items: center; text-align: left; padding: 13px 14px; background: var(--bg); }
+.beat .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); opacity: .35; }
+.beat .nm { font-family: var(--display); font-weight: 800; font-size: 20px; line-height: 1.1; }
+.beat .st { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.beat .bpm { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.beat[aria-pressed="true"] { background: var(--card); }
+.beat[aria-pressed="true"] .dot { opacity: 1; box-shadow: 0 0 12px var(--c); }
+.beat[aria-pressed="true"] .bpm { color: var(--fg); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border: 1px solid var(--line); border-radius: 12px; padding: 3px; gap: 3px; }
+.seg button { padding: 10px 6px; border-radius: 9px; font-size: 14px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); font-weight: 600; }
+.own { display: grid; gap: 12px; padding: 14px; border: 1px dashed var(--line); border-radius: 14px; }
+.own p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.bpmrow { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.bpmrow .val { font-family: var(--mono); font-size: 22px; min-width: 3ch; font-variant-numeric: tabular-nums; }
+.pill { border: 1px solid var(--line); border-radius: 99px; padding: 8px 14px; font-size: 14px; }
+.go { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.go button { padding: 18px; border-radius: 16px; font-family: var(--display); font-weight: 800; font-size: 20px; }
+#startDaily { background: var(--accent); color: #0b0b0c; }
+#startFree { border: 1px solid var(--line); }
+.go small { display: block; font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .08em; opacity: .7; margin-top: 4px; }
+.links { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+.links button { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- cypher ---------- */
+#cypher { background: var(--stage); margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); position: relative; }
+.top { display: flex; justify-content: space-between; align-items: center; padding: 10px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); font-family: var(--mono); font-size: 12px; color: var(--muted); z-index: 2; }
+.top button { padding: 8px; margin: -8px; font-size: 18px; }
+.top .mid { display: flex; gap: 12px; font-variant-numeric: tabular-nums; }
+#chip { position: absolute; top: 46px; left: 0; right: 0; text-align: center; pointer-events: none; padding: 0 24px; transition: opacity .4s; }
+#chip b { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .16em; color: var(--accent); border: 1px solid var(--accent); border-radius: 99px; padding: 4px 10px; display: inline-block; }
+#chip span { display: block; font-size: 13px; color: var(--muted); margin: 10px auto 0; max-width: 38ch; line-height: 1.4; }
+#stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 0 16px; cursor: pointer; transition: opacity .4s; }
+#word { font-family: var(--display); font-weight: 800; letter-spacing: -0.03em; line-height: 1; white-space: nowrap; padding: 10px 12px; text-align: center; transition: transform .09s ease-out, color .3s; }
+#word.in { animation: slam .22s ease-out; }
+@keyframes slam { from { transform: scale(1.25); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+#word.pulse { transform: scale(1.035); }
+#word.pulse1 { transform: scale(1.06); }
+#ghost { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--fg); opacity: .25; min-height: 1.2em; pointer-events: none; }
+#count { font-family: var(--display); font-weight: 800; font-size: 34vw; color: var(--accent); line-height: 1; }
+#cypher.dim #stage { opacity: .55; }
+#cypher.black #stage, #cypher.black #chip { opacity: 0; }
+#flash { position: absolute; inset: 0; background: var(--accent); opacity: 0; pointer-events: none; }
+#flash.go { animation: flash .5s ease-out; }
+@keyframes flash { from { opacity: .45; } to { opacity: 0; } }
+#def { position: absolute; left: 12px; right: 12px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; transform: translateY(130%); transition: transform .28s cubic-bezier(.2,.8,.2,1); pointer-events: none; max-width: 560px; margin: 0 auto; }
+#def.show { transform: none; }
+#def .h { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+#def .w { font-family: var(--display); font-weight: 800; font-size: 26px; }
+#def .pos { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+#def .lv { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-left: auto; letter-spacing: .1em; }
+#def p { margin: 8px 0 0; line-height: 1.45; }
+#def .ex { color: var(--muted); font-style: italic; }
+#loading { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--mono); font-size: 13px; color: var(--muted); background: var(--stage); }
+
+/* ---------- summary / bank ---------- */
+#summary, #bank { overflow-y: auto; gap: 20px; padding-block: 24px; max-width: 560px; margin: 0 auto; }
+.big { font-family: var(--display); font-weight: 800; font-size: 40px; line-height: 1; margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stats div { border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.stats b { display: block; font-family: var(--mono); font-size: 24px; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 12px; color: var(--muted); }
+.list { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.list div { background: var(--bg); padding: 12px 14px; }
+.list b { font-family: var(--display); font-size: 18px; }
+.list .tag { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-left: 8px; }
+.list .tag.known { color: var(--accent); }
+.list p { margin: 4px 0 0; font-size: 14px; color: var(--muted); line-height: 1.4; }
+.empty { color: var(--muted); font-size: 14px; }
+.back { align-self: flex-start; padding: 10px 16px; }
+@media (prefers-reduced-motion: reduce) { #word.in, #flash.go { animation: none; } #word.pulse, #word.pulse1 { transform: none; } }
+</style>
+
+<section id="home" class="screen">
+  <div class="entry">
+    <h1>quotidian</h1>
+    <div class="pron"><span>/kwɒˈtɪd.i.ən/</span><span>adjective</span><span id="streak">🔥 0 day streak</span></div>
+    <p>Everyday; daily. <i>A word appears, the beat drops, you rap. Tap anywhere for the next rhyme. Tap the word to learn what it means.</i></p>
+  </div>
+
+  <div>
+    <div class="label"><span>Beat</span><span id="beatBlurb"></span></div>
+    <div class="beats" id="beatList"></div>
+  </div>
+
+  <div>
+    <div class="label"><span>Vocabulary</span></div>
+    <div class="seg" id="vocabSeg">
+      <button data-v="simple">Simple</button><button data-v="mixed">Mixed</button><button data-v="advanced">Advanced</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="label"><span>Word changes</span></div>
+    <div class="seg" id="modeSeg">
+      <button data-v="tap">On tap</button><button data-v="1">Every bar</button><button data-v="2">Every 2 bars</button>
+    </div>
+  </div>
+
+  <div class="own" id="ownBox" hidden>
+    <p>Start your music in Spotify or Apple Music first, then come back here. Quotidian won't play any sound, so your music keeps going. Set the tempo so the word pulses with it.</p>
+    <div class="bpmrow">
+      <button class="pill" id="bpmDown" aria-label="Slower">−</button>
+      <span class="val" id="bpmVal">90</span><span class="empty">BPM</span>
+      <button class="pill" id="bpmUp" aria-label="Faster">+</button>
+      <button class="pill" id="tapTempo">Tap tempo</button>
+    </div>
+  </div>
+
+  <div class="go">
+    <button id="startDaily">Daily cypher<small>3 MIN · TODAY'S BEAT</small></button>
+    <button id="startFree">Free play<small id="freeSub">WITH ESKI</small></button>
+  </div>
+  <div class="links"><button id="openBank">Word bank</button><span id="bankCount"></span></div>
+</section>
+
+<section id="cypher" class="screen" hidden>
+  <div class="top">
+    <button id="endBtn" aria-label="End session">✕</button>
+    <div class="mid"><span id="secLabel"></span><span id="timer">0:00</span></div>
+    <span id="barLabel"></span>
+  </div>
+  <div id="chip" style="opacity:0"><b id="chipType"></b><span id="chipNote"></span></div>
+  <div id="stage">
+    <div id="word" tabindex="0" role="button" aria-label="Show definition"></div>
+    <div id="ghost"></div>
+  </div>
+  <div id="flash"></div>
+  <div id="def" aria-live="polite"><div class="h"><span class="w" id="dW"></span><span class="pos" id="dPos"></span><span class="lv" id="dLv"></span></div><p id="dDef"></p><p class="ex" id="dEx"></p></div>
+  <div id="loading" hidden>Loading beat…</div>
+</section>
+
+<section id="summary" class="screen" hidden>
+  <h2 class="big" id="sumTitle">Session done</h2>
+  <div class="stats"><div><b id="sTime">0:00</b><span>time</span></div><div><b id="sSeen">0</b><span>words</span></div><div><b id="sLook">0</b><span>looked up</span></div></div>
+  <div><div class="label"><span>Words you looked up</span></div><div class="list" id="sList"></div></div>
+  <button class="pill back" id="sumHome">Back</button>
+</section>
+
+<section id="bank" class="screen" hidden>
+  <h2 class="big">Word bank</h2>
+  <p class="empty" style="margin:0">Words you tap go here. A word counts as known once you've seen it 3 more times without tapping it.</p>
+  <div class="list" id="bList"></div>
+  <button class="pill back" id="bankHome">Back</button>
+</section>
+
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const ACCENT = { eski: "#b6ff3b", dusty: "#ffb547", midnight: "#4da3ff", brass: "#f2c14e", afterglow: "#ff6fa3", foundry: "#a8b3bd", own: "#f4f2ee" };
+const LEVELW = { simple: [0.8, 0.2, 0], mixed: [0.45, 0.3, 0.25], advanced: [0.2, 0.3, 0.5] };
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("q_" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("q_" + k, JSON.stringify(v)); } catch {} }
+};
+let BEATS = [], CHAINS = [], TYPES = {};
+const settings = Object.assign({ beat: "eski", vocab: "mixed", mode: "tap", ownBpm: 90 }, store.get("settings", {}));
+let bank = store.get("bank", {});           // word -> {status, seen, def, pos}
+let streak = store.get("streak", { count: 0, last: null });
+
+// ---------- home ----------
+function renderHome() {
+  const list = $("beatList"); list.innerHTML = "";
+  const all = [...BEATS, { id: "own", name: "Your own music", style: "Spotify, Apple Music, anything", bpm: settings.ownBpm }];
+  for (const b of all) {
+    const el = document.createElement("button");
+    el.className = "beat"; el.style.setProperty("--c", ACCENT[b.id]);
+    el.setAttribute("aria-pressed", settings.beat === b.id);
+    el.innerHTML = `<span class="dot"></span><span><div class="nm"></div><div class="st"></div></span><span class="bpm"></span>`;
+    el.querySelector(".nm").textContent = b.name;
+    el.querySelector(".st").textContent = b.style;
+    el.querySelector(".bpm").textContent = b.id === "own" ? "YOU SET" : b.bpm + " BPM";
+    el.onclick = () => { settings.beat = b.id; save(); renderHome(); };
+    list.appendChild(el);
+  }
+  const cur = BEATS.find(b => b.id === settings.beat);
+  $("beatBlurb").textContent = cur ? "" : "";
+  $("ownBox").hidden = settings.beat !== "own";
+  $("bpmVal").textContent = settings.ownBpm;
+  $("freeSub").textContent = "WITH " + (cur ? cur.name.toUpperCase() : "YOUR MUSIC");
+  for (const [segId, key] of [["vocabSeg", "vocab"], ["modeSeg", "mode"]])
+    for (const btn of $(segId).children) {
+      btn.setAttribute("aria-pressed", btn.dataset.v === String(settings[key]));
+      btn.onclick = () => { settings[key] = btn.dataset.v; save(); renderHome(); };
+    }
+  document.documentElement.style.setProperty("--accent", ACCENT[settings.beat]);
+  const today = dayKey();
+  const live = streak.last === today || streak.last === dayKey(-1);
+  $("streak").textContent = `🔥 ${live ? streak.count : 0} day streak`;
+  const n = Object.keys(bank).length, known = Object.values(bank).filter(w => w.status === "known").length;
+  $("bankCount").textContent = n ? `${n} words · ${known} known` : "";
+}
+function save() { store.set("settings", settings); }
+$("bpmDown").onclick = () => { settings.ownBpm = Math.max(60, settings.ownBpm - 1); save(); renderHome(); };
+$("bpmUp").onclick = () => { settings.ownBpm = Math.min(180, settings.ownBpm + 1); save(); renderHome(); };
+let taps = [];
+$("tapTempo").onclick = () => {
+  const now = performance.now(); taps = taps.filter(t => now - t < 3000); taps.push(now);
+  if (taps.length >= 3) {
+    const gaps = taps.slice(1).map((t, i) => t - taps[i]);
+    settings.ownBpm = Math.round(60000 / (gaps.reduce((a, b) => a + b) / gaps.length));
+    settings.ownBpm = Math.min(180, Math.max(60, settings.ownBpm)); save(); renderHome();
+  }
+};
+
+// ---------- word engine ----------
+function rngFrom(seed) { let s = seed >>> 0 || 1; return () => ((s = Math.imul(s ^ (s >>> 15), 1 | s) + 0x6d2b79f5 >>> 0) , ((s ^ (s >>> 13)) >>> 0) / 4294967296); }
+let rnd = Math.random;
+const S = {};   // session state
+function eligibleChains() {
+  return CHAINS.filter(c => settings.vocab !== "simple" || c.words.filter(w => w.level < 3).length >= 3);
+}
+function pickLevel() {
+  const w = LEVELW[settings.vocab]; let r = rnd() * (w[0] + w[1] + w[2]);
+  return r < w[0] ? 1 : r < w[0] + w[1] ? 2 : 3;
+}
+function buildChain(c) {
+  const unused = c.words.filter(w => !S.used.has(w.w));
+  const out = [];
+  const l1 = unused.filter(w => w.level === 1);
+  const first = l1.length ? l1[Math.floor(rnd() * l1.length)] : unused[0];
+  out.push(first);
+  const want = Math.min(4 + Math.floor(rnd() * 3), unused.length);
+  while (out.length < want) {
+    const lv = pickLevel();
+    const left = unused.filter(w => !out.includes(w) && (settings.vocab !== "simple" || w.level < 3));
+    if (!left.length) break;
+    const order = [lv, lv - 1, lv + 1, lv - 2, lv + 2];
+    let cands = [];
+    for (const L of order) { cands = left.filter(w => w.level === L); if (cands.length) break; }
+    if (!cands.length) cands = left;
+    const weights = cands.map(w => bank[w.w] && bank[w.w].status === "learning" ? 3 : 1);
+    let r = rnd() * weights.reduce((a, b) => a + b), i = 0;
+    while ((r -= weights[i]) > 0) i++;
+    out.push(cands[i]);
+  }
+  return out;
+}
+function newChain() {
+  if (!S.queue.length) {
+    S.queue = eligibleChains().filter(c => c !== S.chain);
+    for (let i = S.queue.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [S.queue[i], S.queue[j]] = [S.queue[j], S.queue[i]]; }
+  }
+  S.chain = S.queue.pop();
+  S.words = buildChain(S.chain); S.pos = 0;
+  const t = TYPES[S.chain.type];
+  showChip(t ? t.label.toUpperCase() : "", S.chain.note, 4500);
+  showWord();
+}
+function leaveWord() {
+  const w = S.words && S.words[S.pos];
+  if (!w || S.tappedThis) return;
+  const e = bank[w.w];
+  if (e && e.status === "learning") { e.seen = (e.seen || 0) + 1; if (e.seen >= 3) e.status = "known"; store.set("bank", bank); }
+}
+function next() {
+  leaveWord();
+  S.pos++;
+  if (S.pos >= S.words.length) newChain(); else showWord();
+}
+function showWord() {
+  const w = S.words[S.pos]; S.used.add(w.w); S.seen++; S.tappedThis = false;
+  const el = $("word"); el.textContent = w.w; fit(el);
+  el.classList.remove("in"); void el.offsetWidth; el.classList.add("in");
+  const nx = S.words[S.pos + 1];
+  $("ghost").textContent = nx ? nx.w : "· new sound next ·";
+  hideDef();
+}
+function fit(el) {
+  el.style.fontSize = "100px";
+  const avail = Math.min(window.innerWidth * 0.9, 900);
+  const size = Math.min(100 * avail / el.scrollWidth, window.innerHeight * 0.26, 170);
+  el.style.fontSize = Math.max(28, size) + "px";
+}
+let defTimer;
+function showDef() {
+  const w = S.words[S.pos]; if (!w) return;
+  $("dW").textContent = w.w; $("dPos").textContent = w.pos;
+  $("dLv").textContent = ["", "SIMPLE", "MID", "ADVANCED"][w.level];
+  $("dDef").textContent = w.def; $("dEx").textContent = w.ex ? `“${w.ex}”` : ""; $("dEx").hidden = !w.ex;
+  $("def").classList.add("show");
+  clearTimeout(defTimer); defTimer = setTimeout(hideDef, 4500);
+  if (!S.tappedThis) {
+    S.tappedThis = true;
+    if (!S.looked.includes(w)) S.looked.push(w);
+    const e = bank[w.w];
+    bank[w.w] = { status: "learning", seen: 0, def: w.def, pos: w.pos, at: Date.now(), taps: (e ? e.taps || 0 : 0) + 1 };
+    store.set("bank", bank);
+  }
+}
+function hideDef() { $("def").classList.remove("show"); }
+let chipTimer;
+function showChip(type, note, ms) {
+  $("chipType").textContent = type; $("chipType").hidden = !type;
+  $("chipNote").textContent = note || ""; $("chip").style.opacity = 1;
+  clearTimeout(chipTimer); chipTimer = setTimeout(() => $("chip").style.opacity = 0, ms);
+}
+
+// ---------- audio + clock ----------
+let ctx = null; const cache = {};
+async function loadBuffer(file) {
+  if (cache[file]) return cache[file];
+  const res = await fetch("beats/" + file);
+  if (!res.ok) throw new Error("Couldn't load " + file);
+  const buf = await ctx.decodeAudioData(await res.arrayBuffer());
+  return (cache[file] = buf);
+}
+function ensureCtx() {
+  try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch {}
+  if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+  if (ctx.state === "suspended") ctx.resume();
+}
+let sources = [];
+function stopAudio() { for (const s of sources) { try { s.stop(); } catch {} } sources = []; }
+
+function clockNow() { return S.own ? performance.now() / 1000 : ctx.currentTime; }
+
+let raf;
+function tick() {
+  raf = requestAnimationFrame(tick);
+  const now = clockNow();
+  const el = Math.max(0, now - S.t0);
+  $("timer").textContent = fmt(S.daily ? Math.max(0, 180 - el) : el);
+  if (S.daily && el >= 180) return finish();
+  const beatLen = S.bar / 4;
+  const rel = now - S.loopStart;
+  if (rel < 0) {            // intro: count in on the last bar
+    const left = Math.ceil(-rel / beatLen);
+    if (left <= 4 && left !== S.lastCount) { S.lastCount = left; $("word").textContent = left; fit($("word")); }
+    return;
+  }
+  if (!S.started) { S.started = true; flash(); newChain(); }
+  const beatIdx = Math.floor(rel / beatLen);
+  if (beatIdx === S.lastBeat) return;
+  S.lastBeat = beatIdx;
+  const barAbs = Math.floor(beatIdx / 4), beatInBar = beatIdx % 4;
+  const barInLoop = S.loopBars ? barAbs % S.loopBars : barAbs;
+  // pulse
+  const w = $("word"); w.classList.remove("pulse", "pulse1");
+  w.classList.add(beatInBar === 0 ? "pulse1" : "pulse"); setTimeout(() => w.classList.remove("pulse", "pulse1"), 110);
+  if (navigator.vibrate && beatInBar === 0) try { navigator.vibrate(8); } catch {}
+  $("barLabel").textContent = `BAR ${barInLoop + 1}`;
+  // sections
+  const sec = S.sections ? S.sections.find(s => barInLoop >= s.startBar && barInLoop < s.startBar + s.bars) : null;
+  const name = sec ? sec.name : "";
+  const isGap = name === "BUILD" && barInLoop === sec.startBar + sec.bars - 1 && beatInBar === 3;
+  $("cypher").classList.toggle("black", isGap);
+  if (beatInBar === 0 && barAbs !== S.lastBar) {
+    const changed = name !== S.lastSec;
+    S.lastBar = barAbs;
+    if (changed) {
+      S.lastSec = name;
+      $("cypher").classList.toggle("dim", name === "BREAK");
+      $("secLabel").textContent = { BREAK: "BREAKDOWN", BUILD: "BUILD", DROP: "DROP", SWITCH: "SWITCH-UP", STRIP: "STRIPPED" }[name] || "";
+      if (name === "BREAK") showChip("BREAKDOWN", "Slow it down. Ride the space.", 3000);
+      if (name === "BUILD") showChip("BUILD", "Get ready, the drop is coming.", 3000);
+      if (name === "DROP" || name === "SWITCH") { flash(); if (navigator.vibrate) try { navigator.vibrate(30); } catch {} newChain(); if (name === "SWITCH") showChip("SWITCH-UP", "New flow, new sound.", 3000); return; }
+    }
+    if (settings.mode !== "tap" && barAbs > 0 && barAbs % Number(settings.mode) === 0) next();
+  }
+}
+function flash() { const f = $("flash"); f.classList.remove("go"); void f.offsetWidth; f.classList.add("go"); }
+function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+
+async function start(daily) {
+  Object.assign(S, { queue: [], used: new Set(), seen: 0, looked: [], words: null, pos: 0, started: false,
+    lastBeat: -1, lastBar: -1, lastSec: null, lastCount: null, daily, chain: null });
+  let beatId = settings.beat;
+  if (daily) {
+    const day = Math.floor(Date.now() / 864e5);
+    rnd = rngFrom(day * 2654435761);
+    if (beatId !== "own") beatId = BEATS[day % BEATS.length].id;
+  } else rnd = Math.random;
+  S.own = beatId === "own";
+  show("cypher");
+  document.documentElement.style.setProperty("--accent", ACCENT[beatId]);
+  $("word").textContent = ""; $("ghost").textContent = ""; $("secLabel").textContent = ""; $("barLabel").textContent = "";
+  $("cypher").classList.remove("dim", "black");
+  if (S.own) {
+    S.bar = 240 / settings.ownBpm; S.sections = null; S.loopBars = 0;
+    S.t0 = clockNow(); S.loopStart = S.t0 + S.bar;   // one bar count-in
+    showChip("YOUR MUSIC", `${settings.ownBpm} BPM · tap anywhere for the next word`, 3000);
+  } else {
+    const b = BEATS.find(x => x.id === beatId);
+    ensureCtx();
+    $("loading").hidden = false;
+    let intro, loop;
+    try { [intro, loop] = await Promise.all([loadBuffer(b.introFile), loadBuffer(b.loopFile)]); }
+    catch (e) { $("loading").textContent = "Couldn't load the beat. Check your connection and try again."; return; }
+    $("loading").hidden = true;
+    if ($("cypher").hidden) return;
+    S.bar = b.barSeconds; S.sections = b.sections; S.loopBars = b.loopBars;
+    const t = ctx.currentTime + 0.15, introDur = b.introBars * b.barSeconds;
+    const si = ctx.createBufferSource(); si.buffer = intro; si.connect(ctx.destination); si.start(t, 0, introDur);
+    const sl = ctx.createBufferSource(); sl.buffer = loop; sl.loop = true;
+    sl.loopStart = b.loopStartFrame / b.sampleRate; sl.loopEnd = (b.loopStartFrame + b.loopFrames) / b.sampleRate;
+    sl.connect(ctx.destination); sl.start(t + introDur, sl.loopStart);
+    sources = [si, sl];
+    S.t0 = t; S.loopStart = t + introDur;
+    showChip(b.name.toUpperCase() + " · " + b.bpm + " BPM", "The beat drops after the count-in.", 2500);
+  }
+  cancelAnimationFrame(raf); tick();
+}
+function finish() {
+  cancelAnimationFrame(raf); stopAudio(); leaveWord();
+  const el = clockNow() - S.t0;
+  if (S.daily && el >= 120) {
+    const today = dayKey();
+    if (streak.last !== today) { streak = { count: streak.last === dayKey(-1) ? streak.count + 1 : 1, last: today }; store.set("streak", streak); }
+  }
+  $("sumTitle").textContent = S.daily ? (el >= 120 ? "Daily cypher done" : "Ended early") : "Session done";
+  $("sTime").textContent = fmt(el); $("sSeen").textContent = S.seen; $("sLook").textContent = S.looked.length;
+  renderWordList($("sList"), S.looked.map(w => ({ w: w.w, def: w.def, ex: w.ex })), "You didn't look anything up. Tap the word next time to see what it means.");
+  show("summary");
+}
+function renderWordList(el, items, emptyText) {
+  el.innerHTML = "";
+  if (!items.length) { el.innerHTML = `<div><p class="empty"></p></div>`; el.querySelector("p").textContent = emptyText; return; }
+  for (const it of items) {
+    const d = document.createElement("div");
+    d.innerHTML = `<b></b><span class="tag"></span><p></p>`;
+    d.querySelector("b").textContent = it.w;
+    const tag = d.querySelector(".tag");
+    if (it.status) { tag.textContent = it.status === "known" ? "KNOWN" : `LEARNING · ${it.seen || 0}/3`; tag.classList.toggle("known", it.status === "known"); }
+    d.querySelector("p").textContent = it.def + (it.ex ? `  “${it.ex}”` : "");
+    el.appendChild(d);
+  }
+}
+function dayKey(off = 0) { const d = new Date(Date.now() + off * 864e5); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+function show(id) {
+  for (const s of ["home", "cypher", "summary", "bank"]) $(s).hidden = s !== id;
+  document.body.style.background = id === "cypher" ? "var(--stage)" : "var(--bg)";
+  if (id === "home") renderHome();
+}
+
+// ---------- input ----------
+$("stage").addEventListener("click", e => {
+  if (!S.started) return;
+  if (e.target === $("word")) { showDef(); return; }
+  next();
+});
+$("word").addEventListener("keydown", e => { if (e.key === "Enter") showDef(); });
+document.addEventListener("keydown", e => { if (!$("cypher").hidden && S.started && (e.key === " " || e.key === "ArrowRight")) { e.preventDefault(); next(); } });
+$("endBtn").onclick = finish;
+$("startDaily").onclick = () => start(true);
+$("startFree").onclick = () => start(false);
+$("sumHome").onclick = () => show("home");
+$("bankHome").onclick = () => show("home");
+$("openBank").onclick = () => {
+  const items = Object.entries(bank).sort((a, b) => (b[1].at || 0) - (a[1].at || 0)).map(([w, e]) => ({ w, ...e }));
+  renderWordList($("bList"), items, "Nothing yet. Tap a word during a cypher to save it here.");
+  show("bank");
+};
+window.addEventListener("resize", () => { if (!$("cypher").hidden && $("word").textContent) fit($("word")); });
+
+// ---------- boot ----------
+Promise.all([fetch("beats/beats.json").then(r => r.json()), fetch("words.json").then(r => r.json())]).then(([b, w]) => {
+  BEATS = b.beats; CHAINS = w.chains; TYPES = w.rhymeTypes;
+  if (!BEATS.some(x => x.id === settings.beat) && settings.beat !== "own") settings.beat = BEATS[0].id;
+  renderHome();
+}).catch(() => { $("beatList").innerHTML = '<div class="beat"><span></span><span class="st">Couldn\'t load beats. Reload the page.</span></div>'; });
+renderHome();
+})();
+</script>

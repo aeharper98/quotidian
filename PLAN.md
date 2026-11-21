@@ -29,7 +29,7 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 
 ### 1. Home
 - Big "Today's Cypher" button showing the streak flame and a count, e.g. "🔥 6".
-- Beat picker: 6 cards (name, style, BPM), sorted easiest first, that preview on tap.
+- Beat picker: 6 cards (name, style, BPM), sorted easiest first, that preview on tap, plus a **Your own music** card.
 - "Free play" button.
 - Small links to Word Bank and Settings.
 
@@ -85,6 +85,14 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 - Audio session: `.playAndRecord` with `.defaultToSpeaker` and `.allowBluetoothA2DP`, so the beat keeps playing with the mute switch on.
 - Use the `free` flag in `beats.json` to lock premium beats later. Everything is unlocked during beta.
 
+## Your own music
+
+- A seventh option in the beat picker is **"Your own music"**. You start Spotify, Apple Music or YouTube first, then open Quotidian, and your music keeps playing.
+- In this mode the app plays nothing and uses audio session category `.ambient` (or `.playback` with `.mixWithOthers`), so iOS never pauses or ducks the other app.
+- Set the tempo with **tap tempo** or ± buttons (60–180 BPM). It drives the pulse and auto word-change. There are no sections, so chains change every 4–6 words as usual.
+- **Recording in this mode** uses `.playAndRecord` with `.mixWithOthers`, `.defaultToSpeaker` and `.allowBluetoothA2DP`. The mic hears the music from the speaker, so the recording includes it. With headphones you get the voice only. Apps aren't allowed to capture another app's audio directly, so we don't try.
+- Streaming apps don't give us the song's BPM, so tap tempo is the only way to get it.
+
 ## Recording (simple version for V1)
 
 - The record toggle on the Cypher screen records the **mic only** (a separate file, `.m4a`) while the beat plays.
@@ -98,6 +106,15 @@ A black screen with one huge word. The beat drops. You rap. Tap anywhere and the
 - Word font: SF Pro Rounded Heavy (or a bold condensed face), all lowercase, huge.
 - Hardly any UI on the Cypher screen. The word is the whole app.
 - Haptics: light tap on next word, soft tick on each downbeat if enabled.
+
+## How we build it
+
+- **No Rork.** Claude writes the native SwiftUI app directly in this repo.
+  - The Xcode project is generated from `project.yml` (XcodeGen), so it stays readable and easy to diff.
+  - The code lives in `App/`, and the bundled data lives in `Resources/`.
+- Builds run on **GitHub Actions macOS runners**. Every push compiles the app, and a manual "Ship to TestFlight" workflow signs it and uploads it with an App Store Connect API key stored as repo secrets.
+- The whole loop works from a phone: Claude pushes code, Actions builds it, you install from TestFlight, and you send feedback in chat.
+- The web prototype (`web/index.html`) is for testing the mechanics. It shares the same `words.json` and beats.
 
 ## Data and storage
 
