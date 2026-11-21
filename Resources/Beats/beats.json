@@ -1,0 +1,49 @@
+{
+  "beats": [
+    {
+      "id": "eski",
+      "name": "Eski",
+      "style": "Grime",
+      "bpm": 140,
+      "key": "F minor",
+      "blurb": "Square-wave grime riff, half-time clap. Fast and bouncy.",
+      "beatsPerBar": 4,
+      "loopBars": 16,
+      "introBars": 2,
+      "loopFile": "eski_loop.m4a",
+      "introFile": "eski_intro.m4a",
+      "barSeconds": 1.714286,
+      "free": true
+    },
+    {
+      "id": "dusty",
+      "name": "Dusty",
+      "style": "Boom bap",
+      "bpm": 90,
+      "key": "D minor",
+      "blurb": "Swung drums, warm keys, vinyl crackle. Slow and roomy, best for beginners.",
+      "beatsPerBar": 4,
+      "loopBars": 16,
+      "introBars": 2,
+      "loopFile": "dusty_loop.m4a",
+      "introFile": "dusty_intro.m4a",
+      "barSeconds": 2.666667,
+      "free": true
+    },
+    {
+      "id": "midnight",
+      "name": "Midnight",
+      "style": "UK drill",
+      "bpm": 142,
+      "key": "F# minor",
+      "blurb": "Sliding 808s, skippy hats, dark bells. Hardest to ride.",
+      "beatsPerBar": 4,
+      "loopBars": 16,
+      "introBars": 2,
+      "loopFile": "midnight_loop.m4a",
+      "introFile": "midnight_intro.m4a",
+      "barSeconds": 1.690141,
+      "free": true
+    }
+  ]
+}

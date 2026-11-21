@@ -1,0 +1,2703 @@
+{
+ "version": 1,
+ "rhymeTypes": {
+  "perfect": {
+   "label": "Perfect rhyme",
+   "explain": "Everything from the stressed vowel onwards matches exactly."
+  },
+  "accent": {
+   "label": "Accent rhyme",
+   "explain": "Only rhymes in a British accent, because the r after a vowel goes silent."
+  },
+  "slant": {
+   "label": "Slant rhyme",
+   "explain": "The vowels match and the consonants are close. This is the backbone of UK flow."
+  },
+  "multi": {
+   "label": "Multi",
+   "explain": "Two or more syllables rhyme in a row. This is what makes a crowd react."
+  },
+  "dialect": {
+   "label": "Dialect rhyme",
+   "explain": "Works because of how London speech actually sounds (e.g. 'thing' becomes 'ting')."
+  },
+  "cheap": {
+   "label": "Cheap rhyme",
+   "explain": "Easy and predictable. Good for warming up, but go for something rarer."
+  }
+ },
+ "chains": [
+  {
+   "id": "ah-muh",
+   "sound": "AH-muh",
+   "type": "accent",
+   "note": "Say it in a British accent: the r in 'farmer' and 'armour' disappears, so they rhyme perfectly with 'drama'.",
+   "words": [
+    {
+     "w": "drama",
+     "level": 1,
+     "pos": "noun",
+     "def": "Exciting, emotional events, or a play for stage or screen."
+    },
+    {
+     "w": "karma",
+     "level": 1,
+     "pos": "noun",
+     "def": "The idea that what you put out comes back to you."
+    },
+    {
+     "w": "farmer",
+     "level": 1,
+     "pos": "noun",
+     "def": "Someone who runs a farm."
+    },
+    {
+     "w": "armour",
+     "level": 1,
+     "pos": "noun",
+     "def": "Protective metal covering worn in battle."
+    },
+    {
+     "w": "charmer",
+     "level": 1,
+     "pos": "noun",
+     "def": "Someone who wins people over easily."
+    },
+    {
+     "w": "llama",
+     "level": 1,
+     "pos": "noun",
+     "def": "A long-necked South American animal, related to the camel."
+    },
+    {
+     "w": "pyjamas",
+     "level": 1,
+     "pos": "noun",
+     "def": "Loose clothes you sleep in."
+    },
+    {
+     "w": "melodrama",
+     "level": 2,
+     "pos": "noun",
+     "def": "Over-the-top emotion, like a soap opera."
+    },
+    {
+     "w": "panorama",
+     "level": 3,
+     "pos": "noun",
+     "def": "A wide, unbroken view of a whole area.",
+     "ex": "Top floor of the block, I'm taking in the panorama"
+    },
+    {
+     "w": "dharma",
+     "level": 3,
+     "pos": "noun",
+     "def": "In Hindu and Buddhist thought, your true duty or path in life.",
+     "ex": "Stay on my dharma, I don't need the drama"
+    }
+   ]
+  },
+  {
+   "id": "aw-duh",
+   "sound": "AW-duh",
+   "type": "accent",
+   "note": "UK speech drops the r, so 'order' sounds like 'aw-duh', a near-perfect match for 'water'. The t and d are close enough.",
+   "words": [
+    {
+     "w": "water",
+     "level": 1,
+     "pos": "noun",
+     "def": "The clear liquid that falls as rain and fills rivers and seas."
+    },
+    {
+     "w": "order",
+     "level": 1,
+     "pos": "noun",
+     "def": "A request for something, or things arranged neatly."
+    },
+    {
+     "w": "border",
+     "level": 1,
+     "pos": "noun",
+     "def": "The line where one country or area ends and another begins."
+    },
+    {
+     "w": "daughter",
+     "level": 1,
+     "pos": "noun",
+     "def": "Someone's female child."
+    },
+    {
+     "w": "quarter",
+     "level": 1,
+     "pos": "noun",
+     "def": "One of four equal parts."
+    },
+    {
+     "w": "recorder",
+     "level": 1,
+     "pos": "noun",
+     "def": "A device that records sound, or a simple wooden flute."
+    },
+    {
+     "w": "supporter",
+     "level": 1,
+     "pos": "noun",
+     "def": "A fan, or someone who backs you."
+    },
+    {
+     "w": "slaughter",
+     "level": 2,
+     "pos": "verb",
+     "def": "To kill brutally, or to beat someone heavily."
+    },
+    {
+     "w": "mortar",
+     "level": 2,
+     "pos": "noun",
+     "def": "The paste that holds bricks together."
+    },
+    {
+     "w": "hoarder",
+     "level": 2,
+     "pos": "noun",
+     "def": "Someone who stores up far more than they need."
+    },
+    {
+     "w": "marauder",
+     "level": 3,
+     "pos": "noun",
+     "def": "A raider who roams around looking for things to steal.",
+     "ex": "Roll through the ends like a marauder, no order"
+    }
+   ]
+  },
+  {
+   "id": "id-ee-un",
+   "sound": "ID-ee-un",
+   "type": "multi",
+   "note": "A multi: three syllables rhyme in a row (ID-ee-un). Long words like these sound clever because the whole tail of the word matches.",
+   "words": [
+    {
+     "w": "video",
+     "level": 1,
+     "pos": "noun",
+     "def": "Recorded moving pictures."
+    },
+    {
+     "w": "idiot",
+     "level": 1,
+     "pos": "noun",
+     "def": "A very foolish person."
+    },
+    {
+     "w": "hideous",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Extremely ugly."
+    },
+    {
+     "w": "idiom",
+     "level": 2,
+     "pos": "noun",
+     "def": "A phrase whose meaning isn't literal, like 'spill the tea'."
+    },
+    {
+     "w": "quotidian",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Everyday, ordinary, part of daily life.",
+     "ex": "Bars are quotidian, I spit 'em like it's every day, see"
+    },
+    {
+     "w": "obsidian",
+     "level": 3,
+     "pos": "noun",
+     "def": "Shiny black glass formed when lava cools fast.",
+     "ex": "Cold heart, black ice, mind sharp like obsidian"
+    },
+    {
+     "w": "meridian",
+     "level": 3,
+     "pos": "noun",
+     "def": "An imaginary line from pole to pole; also the peak of something.",
+     "ex": "Greenwich meridian, I'm the line that the time's on"
+    },
+    {
+     "w": "insidious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Harmful in a slow, sneaky way you don't notice at first.",
+     "ex": "Doubt is insidious, creeps in like it's hideous"
+    },
+    {
+     "w": "perfidious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Disloyal; ready to betray people.",
+     "ex": "Perfidious man, you'd sell your mates for a video"
+    },
+    {
+     "w": "fastidious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Very fussy about details and doing things properly.",
+     "ex": "Fastidious with the flow, every syllable placed"
+    },
+    {
+     "w": "invidious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Unfair, and likely to cause resentment.",
+     "ex": "Comparing me to them? That's invidious, bro"
+    },
+    {
+     "w": "viridian",
+     "level": 3,
+     "pos": "noun",
+     "def": "A deep blue-green colour.",
+     "ex": "Viridian waves when the beat goes oceanic"
+    }
+   ]
+  },
+  {
+   "id": "an-dum",
+   "sound": "AN-dum",
+   "type": "slant",
+   "note": "Assonance: the vowels match (AN-uh) and the consonants just sit close. This is the backbone of UK flow, because it's about sound, not spelling.",
+   "words": [
+    {
+     "w": "random",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Happening without a plan or pattern."
+    },
+    {
+     "w": "anthem",
+     "level": 1,
+     "pos": "noun",
+     "def": "A song people sing together with pride."
+    },
+    {
+     "w": "handsome",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Good-looking."
+    },
+    {
+     "w": "panda",
+     "level": 1,
+     "pos": "noun",
+     "def": "A black-and-white bear from China."
+    },
+    {
+     "w": "mandem",
+     "level": 1,
+     "pos": "slang",
+     "def": "A group of guys, your friends (London slang)."
+    },
+    {
+     "w": "ransom",
+     "level": 2,
+     "pos": "noun",
+     "def": "Money demanded to free someone held captive."
+    },
+    {
+     "w": "phantom",
+     "level": 2,
+     "pos": "noun",
+     "def": "A ghost, or something that isn't really there."
+    },
+    {
+     "w": "tandem",
+     "level": 2,
+     "pos": "noun",
+     "def": "Two things working together, side by side."
+    },
+    {
+     "w": "fandom",
+     "level": 2,
+     "pos": "noun",
+     "def": "All the fans of something, as a community."
+    },
+    {
+     "w": "propaganda",
+     "level": 2,
+     "pos": "noun",
+     "def": "Biased information spread to push a point of view."
+    },
+    {
+     "w": "candour",
+     "level": 3,
+     "pos": "noun",
+     "def": "Being open, honest and frank.",
+     "ex": "Speak with candour, no propaganda"
+    },
+    {
+     "w": "memorandum",
+     "level": 3,
+     "pos": "noun",
+     "def": "A written note, often an official record or agreement.",
+     "ex": "Sign the memorandum, me and the mandem"
+    }
+   ]
+  },
+  {
+   "id": "ing",
+   "sound": "ING",
+   "type": "dialect",
+   "note": "In London speech 'thing' becomes 'ting' (the th turns into a t or f). Freestylers rhyme on how they actually talk.",
+   "words": [
+    {
+     "w": "thing",
+     "level": 1,
+     "pos": "noun",
+     "def": "An object, or a matter or situation."
+    },
+    {
+     "w": "ting",
+     "level": 1,
+     "pos": "slang",
+     "def": "London slang for 'thing'."
+    },
+    {
+     "w": "ring",
+     "level": 1,
+     "pos": "noun",
+     "def": "A circle, often jewellery worn on a finger."
+    },
+    {
+     "w": "king",
+     "level": 1,
+     "pos": "noun",
+     "def": "A male ruler of a country."
+    },
+    {
+     "w": "sting",
+     "level": 1,
+     "pos": "verb",
+     "def": "To cause a sharp pain."
+    },
+    {
+     "w": "string",
+     "level": 1,
+     "pos": "noun",
+     "def": "Thin cord or thread."
+    },
+    {
+     "w": "spring",
+     "level": 1,
+     "pos": "noun",
+     "def": "The season after winter, or a coiled bit of metal."
+    },
+    {
+     "w": "plaything",
+     "level": 1,
+     "pos": "noun",
+     "def": "A toy, or someone treated like one."
+    },
+    {
+     "w": "offspring",
+     "level": 2,
+     "pos": "noun",
+     "def": "A person's or animal's children."
+    },
+    {
+     "w": "wellspring",
+     "level": 3,
+     "pos": "noun",
+     "def": "A rich, never-ending source of something.",
+     "ex": "My mind's a wellspring, every bar's a new ting"
+    },
+    {
+     "w": "underling",
+     "level": 3,
+     "pos": "noun",
+     "def": "Someone low-ranking who takes orders.",
+     "ex": "You're an underling, I'm the one that crowned the king"
+    }
+   ]
+  },
+  {
+   "id": "ay-shun",
+   "sound": "AY-shun",
+   "type": "cheap",
+   "note": "The easiest rhyme in English. Fine for warming up, but crowds hear '-ation' coming. Try landing a rarer word instead.",
+   "words": [
+    {
+     "w": "nation",
+     "level": 1,
+     "pos": "noun",
+     "def": "A country and its people."
+    },
+    {
+     "w": "station",
+     "level": 1,
+     "pos": "noun",
+     "def": "A place where trains or buses stop."
+    },
+    {
+     "w": "patience",
+     "level": 1,
+     "pos": "noun",
+     "def": "Being able to wait calmly."
+    },
+    {
+     "w": "vacation",
+     "level": 1,
+     "pos": "noun",
+     "def": "A holiday."
+    },
+    {
+     "w": "frustration",
+     "level": 1,
+     "pos": "noun",
+     "def": "Feeling annoyed because you can't do something."
+    },
+    {
+     "w": "imagination",
+     "level": 1,
+     "pos": "noun",
+     "def": "The ability to picture things in your mind."
+    },
+    {
+     "w": "procrastination",
+     "level": 2,
+     "pos": "noun",
+     "def": "Putting off things you should do now."
+    },
+    {
+     "w": "trepidation",
+     "level": 3,
+     "pos": "noun",
+     "def": "Nervous fear about something coming up.",
+     "ex": "Step to the mic with no trepidation"
+    },
+    {
+     "w": "veneration",
+     "level": 3,
+     "pos": "noun",
+     "def": "Deep respect, almost worship.",
+     "ex": "Give the OGs veneration"
+    },
+    {
+     "w": "conflagration",
+     "level": 3,
+     "pos": "noun",
+     "def": "A huge, destructive fire.",
+     "ex": "Bars spread like a conflagration"
+    },
+    {
+     "w": "abnegation",
+     "level": 3,
+     "pos": "noun",
+     "def": "Giving up something you want, often for others.",
+     "ex": "Self-abnegation, I give it all to the station"
+    },
+    {
+     "w": "equivocation",
+     "level": 3,
+     "pos": "noun",
+     "def": "Being deliberately vague to avoid committing.",
+     "ex": "Straight talk, no equivocation"
+    }
+   ]
+  },
+  {
+   "id": "ed-uh-bul",
+   "sound": "ED-uh-bul",
+   "type": "multi",
+   "note": "Match the stressed vowel (ED), then let '-uh-bul' carry the rest. 'Impeccable' still works because 'EK' is close to 'ED'.",
+   "words": [
+    {
+     "w": "incredible",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Amazing, hard to believe."
+    },
+    {
+     "w": "edible",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Safe to eat."
+    },
+    {
+     "w": "medical",
+     "level": 1,
+     "pos": "adjective",
+     "def": "To do with medicine and health."
+    },
+    {
+     "w": "unforgettable",
+     "level": 1,
+     "pos": "adjective",
+     "def": "So memorable you can't forget it."
+    },
+    {
+     "w": "credible",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Believable, trustworthy."
+    },
+    {
+     "w": "regrettable",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Unfortunate; something you'd wish hadn't happened."
+    },
+    {
+     "w": "indelible",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Impossible to remove or forget.",
+     "ex": "Ink on the page is indelible"
+    },
+    {
+     "w": "ineffable",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Too great or intense to put into words.",
+     "ex": "The feeling's ineffable, flow's incredible"
+    },
+    {
+     "w": "impeccable",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Flawless.",
+     "ex": "Timing's impeccable, every bar's edible"
+    }
+   ]
+  },
+  {
+   "id": "ish-un",
+   "sound": "ISH-un",
+   "type": "perfect",
+   "note": "A clean perfect rhyme, but the advanced words are where the points are. 'Erudition' beats 'mission' every time.",
+   "words": [
+    {
+     "w": "mission",
+     "level": 1,
+     "pos": "noun",
+     "def": "An important task or goal."
+    },
+    {
+     "w": "vision",
+     "level": 1,
+     "pos": "noun",
+     "def": "Sight, or a clear idea of the future."
+    },
+    {
+     "w": "decision",
+     "level": 1,
+     "pos": "noun",
+     "def": "A choice you've made."
+    },
+    {
+     "w": "ambition",
+     "level": 1,
+     "pos": "noun",
+     "def": "A strong desire to succeed."
+    },
+    {
+     "w": "position",
+     "level": 1,
+     "pos": "noun",
+     "def": "Where someone or something is."
+    },
+    {
+     "w": "tradition",
+     "level": 1,
+     "pos": "noun",
+     "def": "A custom passed down through generations."
+    },
+    {
+     "w": "superstition",
+     "level": 2,
+     "pos": "noun",
+     "def": "A belief in luck or magic without evidence."
+    },
+    {
+     "w": "acquisition",
+     "level": 2,
+     "pos": "noun",
+     "def": "Something you've gained or bought."
+    },
+    {
+     "w": "erudition",
+     "level": 3,
+     "pos": "noun",
+     "def": "Deep knowledge from lots of study.",
+     "ex": "Pure erudition, I study the vision"
+    },
+    {
+     "w": "attrition",
+     "level": 3,
+     "pos": "noun",
+     "def": "Wearing something down gradually.",
+     "ex": "War of attrition, I outlast the competition"
+    },
+    {
+     "w": "sedition",
+     "level": 3,
+     "pos": "noun",
+     "def": "Speech or action stirring up rebellion against the state.",
+     "ex": "They call it sedition, I call it my mission"
+    },
+    {
+     "w": "premonition",
+     "level": 3,
+     "pos": "noun",
+     "def": "A feeling that something's about to happen.",
+     "ex": "Had a premonition I'd win this position"
+    }
+   ]
+  },
+  {
+   "id": "ee-ree-us",
+   "sound": "EER-ee-us",
+   "type": "multi",
+   "note": "Three syllables to match: the stressed vowel, then 'ee-us'. 'Curious' and 'serious' have slightly different vowels but ride together fine.",
+   "words": [
+    {
+     "w": "serious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Not joking; important."
+    },
+    {
+     "w": "curious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Wanting to know or learn things."
+    },
+    {
+     "w": "furious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Extremely angry."
+    },
+    {
+     "w": "mysterious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Strange and hard to explain."
+    },
+    {
+     "w": "delirious",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Confused and wild, from illness or excitement."
+    },
+    {
+     "w": "luxurious",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Very comfortable and expensive."
+    },
+    {
+     "w": "imperious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Bossy and arrogant, acting like a ruler.",
+     "ex": "Imperious, I rule the room, I'm serious"
+    },
+    {
+     "w": "spurious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Fake, or based on bad reasoning.",
+     "ex": "Your claims are spurious, that's why I'm furious"
+    },
+    {
+     "w": "penurious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Extremely poor, or very stingy.",
+     "ex": "Penurious past but the future's luxurious"
+    },
+    {
+     "w": "injurious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Causing harm or damage.",
+     "ex": "Bars injurious, keep it curious"
+    }
+   ]
+  },
+  {
+   "id": "op-ik",
+   "sound": "OP-ik",
+   "type": "slant",
+   "note": "'Pocket' and 'topic' don't match on paper, but say them quickly and they're close. Mosaic rhymes like 'stop it' use two words to match one.",
+   "words": [
+    {
+     "w": "topic",
+     "level": 1,
+     "pos": "noun",
+     "def": "The subject being talked about."
+    },
+    {
+     "w": "pocket",
+     "level": 1,
+     "pos": "noun",
+     "def": "A small pouch sewn into clothes."
+    },
+    {
+     "w": "rocket",
+     "level": 1,
+     "pos": "noun",
+     "def": "A vehicle that flies into space."
+    },
+    {
+     "w": "stop it",
+     "level": 1,
+     "pos": "phrase",
+     "def": "Quit doing that."
+    },
+    {
+     "w": "drop it",
+     "level": 1,
+     "pos": "phrase",
+     "def": "Let it fall, or release something new."
+    },
+    {
+     "w": "tropic",
+     "level": 2,
+     "pos": "noun",
+     "def": "The hot region either side of the equator."
+    },
+    {
+     "w": "microscopic",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Too small to see without a microscope."
+    },
+    {
+     "w": "myopic",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Short-sighted, literally or in thinking.",
+     "ex": "Your view's myopic, I see past the topic"
+    },
+    {
+     "w": "philanthropic",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Generous; giving to good causes.",
+     "ex": "Philanthropic with the bars, take one for your pocket"
+    },
+    {
+     "w": "misanthropic",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Disliking people in general.",
+     "ex": "Misanthropic mood, so I'm leaving in a rocket"
+    },
+    {
+     "w": "kaleidoscopic",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Colourful and constantly changing.",
+     "ex": "Flow's kaleidoscopic, every bar a new topic"
+    }
+   ]
+  },
+  {
+   "id": "en-tul",
+   "sound": "EN-tul",
+   "type": "perfect",
+   "note": "Perfect rhyme on 'EN-tul'. Long words ending in '-mental' let you stack three or four syllables of rhyme.",
+   "words": [
+    {
+     "w": "mental",
+     "level": 1,
+     "pos": "adjective",
+     "def": "To do with the mind; also slang for crazy."
+    },
+    {
+     "w": "rental",
+     "level": 1,
+     "pos": "noun",
+     "def": "Something you pay to use for a while."
+    },
+    {
+     "w": "dental",
+     "level": 1,
+     "pos": "adjective",
+     "def": "To do with teeth."
+    },
+    {
+     "w": "gentle",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Kind and soft."
+    },
+    {
+     "w": "central",
+     "level": 1,
+     "pos": "adjective",
+     "def": "In the middle; most important."
+    },
+    {
+     "w": "instrumental",
+     "level": 2,
+     "pos": "noun",
+     "def": "A track with no vocals."
+    },
+    {
+     "w": "sentimental",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Driven by feelings and nostalgia."
+    },
+    {
+     "w": "monumental",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Huge, very important."
+    },
+    {
+     "w": "detrimental",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Causing harm.",
+     "ex": "Doubting me's detrimental, my flow's monumental"
+    },
+    {
+     "w": "transcendental",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Beyond normal experience; spiritual.",
+     "ex": "Transcendental on the instrumental"
+    },
+    {
+     "w": "incidental",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Happening alongside something bigger; minor.",
+     "ex": "Fame's incidental, the bars are fundamental"
+    }
+   ]
+  },
+  {
+   "id": "ish-us",
+   "sound": "ISH-us",
+   "type": "perfect",
+   "note": "A goldmine of advanced vocab. Every one of these ends in 'ISH-us', so once you find the vowel the rhyme is free.",
+   "words": [
+    {
+     "w": "vicious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Cruel or violent."
+    },
+    {
+     "w": "delicious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Tastes really good."
+    },
+    {
+     "w": "ambitious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Determined to succeed."
+    },
+    {
+     "w": "suspicious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Not trusting; or seeming dodgy."
+    },
+    {
+     "w": "nutritious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Good for your body."
+    },
+    {
+     "w": "malicious",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Meaning to cause harm."
+    },
+    {
+     "w": "fictitious",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Made up, not real."
+    },
+    {
+     "w": "auspicious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "A good sign that things will go well.",
+     "ex": "Auspicious start, the beat's delicious"
+    },
+    {
+     "w": "capricious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Changing mood or mind suddenly.",
+     "ex": "Capricious crowd, so my flow stays vicious"
+    },
+    {
+     "w": "avaricious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Greedy for money.",
+     "ex": "Avaricious? Nah, I'm just ambitious"
+    },
+    {
+     "w": "expeditious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Quick and efficient.",
+     "ex": "Expeditious with the bars, no time to be suspicious"
+    },
+    {
+     "w": "surreptitious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Done secretly so no one notices.",
+     "ex": "Surreptitious, slid in quiet, now I'm vicious"
+    }
+   ]
+  },
+  {
+   "id": "air-ee-us",
+   "sound": "AIR-ee-us",
+   "type": "multi",
+   "note": "Three-syllable multi. Get the 'AIR' sound right and four words in a row will sound planned.",
+   "words": [
+    {
+     "w": "hilarious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Extremely funny."
+    },
+    {
+     "w": "various",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Several different kinds."
+    },
+    {
+     "w": "Aquarius",
+     "level": 2,
+     "pos": "noun",
+     "def": "A star sign, the water carrier."
+    },
+    {
+     "w": "nefarious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Wicked, criminal.",
+     "ex": "Nefarious plans, but the bars are hilarious"
+    },
+    {
+     "w": "precarious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Shaky; likely to collapse.",
+     "ex": "Your position's precarious"
+    },
+    {
+     "w": "gregarious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Sociable; loves being around people.",
+     "ex": "Gregarious, I'm with the mandem in various"
+    },
+    {
+     "w": "vicarious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Felt through someone else's experience.",
+     "ex": "Live vicarious through my bars, it's hilarious"
+    }
+   ]
+  },
+  {
+   "id": "uh-ul",
+   "sound": "UH-ul",
+   "type": "slant",
+   "note": "Mixing 'subtle', 'trouble' and 'struggle' works because the vowel (UH) is identical. The middle consonant can change.",
+   "words": [
+    {
+     "w": "trouble",
+     "level": 1,
+     "pos": "noun",
+     "def": "Difficulty or problems."
+    },
+    {
+     "w": "double",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Twice as much."
+    },
+    {
+     "w": "bubble",
+     "level": 1,
+     "pos": "noun",
+     "def": "A ball of air in liquid."
+    },
+    {
+     "w": "struggle",
+     "level": 1,
+     "pos": "noun",
+     "def": "A hard effort against difficulty."
+    },
+    {
+     "w": "juggle",
+     "level": 1,
+     "pos": "verb",
+     "def": "To handle several things at once."
+    },
+    {
+     "w": "cuddle",
+     "level": 1,
+     "pos": "verb",
+     "def": "To hug lovingly."
+    },
+    {
+     "w": "puddle",
+     "level": 1,
+     "pos": "noun",
+     "def": "A small pool of rainwater."
+    },
+    {
+     "w": "subtle",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Delicate, not obvious."
+    },
+    {
+     "w": "rubble",
+     "level": 2,
+     "pos": "noun",
+     "def": "Broken stone from a ruined building."
+    },
+    {
+     "w": "kerfuffle",
+     "level": 2,
+     "pos": "noun",
+     "def": "A fuss or commotion (very British)."
+    },
+    {
+     "w": "rebuttal",
+     "level": 3,
+     "pos": "noun",
+     "def": "An argument that disproves another.",
+     "ex": "Here's my rebuttal, it's subtle but it's trouble"
+    },
+    {
+     "w": "befuddle",
+     "level": 3,
+     "pos": "verb",
+     "def": "To confuse completely.",
+     "ex": "Wordplay to befuddle, leave 'em in a muddle"
+    }
+   ]
+  },
+  {
+   "id": "ime",
+   "sound": "IME",
+   "type": "perfect",
+   "note": "One-syllable perfect rhymes are easy to hit, so use them to land the end of a line hard.",
+   "words": [
+    {
+     "w": "time",
+     "level": 1,
+     "pos": "noun",
+     "def": "What clocks measure."
+    },
+    {
+     "w": "rhyme",
+     "level": 1,
+     "pos": "noun",
+     "def": "Words that end with the same sound."
+    },
+    {
+     "w": "crime",
+     "level": 1,
+     "pos": "noun",
+     "def": "An illegal act."
+    },
+    {
+     "w": "climb",
+     "level": 1,
+     "pos": "verb",
+     "def": "To go up."
+    },
+    {
+     "w": "prime",
+     "level": 1,
+     "pos": "adjective",
+     "def": "The best; at your peak."
+    },
+    {
+     "w": "sublime",
+     "level": 2,
+     "pos": "adjective",
+     "def": "So excellent it's almost spiritual."
+    },
+    {
+     "w": "pantomime",
+     "level": 2,
+     "pos": "noun",
+     "def": "A comic British Christmas show with audience shouting."
+    },
+    {
+     "w": "paradigm",
+     "level": 3,
+     "pos": "noun",
+     "def": "A model or way of seeing things.",
+     "ex": "Shift the paradigm every time I rhyme"
+    },
+    {
+     "w": "maritime",
+     "level": 3,
+     "pos": "adjective",
+     "def": "To do with the sea and ships.",
+     "ex": "Maritime flow, I'm sailing through time"
+    }
+   ]
+  },
+  {
+   "id": "al-uh-ree",
+   "sound": "AL-uh-ree",
+   "type": "multi",
+   "note": "Three syllables, stress on the first. 'Battery' and 'flattery' swap AL for AT, and the ear still accepts it.",
+   "words": [
+    {
+     "w": "salary",
+     "level": 1,
+     "pos": "noun",
+     "def": "Pay you get for a job."
+    },
+    {
+     "w": "gallery",
+     "level": 1,
+     "pos": "noun",
+     "def": "A place that shows art."
+    },
+    {
+     "w": "calorie",
+     "level": 1,
+     "pos": "noun",
+     "def": "A unit of energy in food."
+    },
+    {
+     "w": "galaxy",
+     "level": 1,
+     "pos": "noun",
+     "def": "A huge system of stars."
+    },
+    {
+     "w": "battery",
+     "level": 1,
+     "pos": "noun",
+     "def": "Stores power for devices."
+    },
+    {
+     "w": "flattery",
+     "level": 2,
+     "pos": "noun",
+     "def": "Over-the-top praise."
+    },
+    {
+     "w": "cavalry",
+     "level": 2,
+     "pos": "noun",
+     "def": "Soldiers on horseback; help arriving."
+    },
+    {
+     "w": "fallacy",
+     "level": 3,
+     "pos": "noun",
+     "def": "A mistaken belief or faulty argument.",
+     "ex": "Your flow's a fallacy, mine's from a galaxy"
+    },
+    {
+     "w": "alchemy",
+     "level": 3,
+     "pos": "noun",
+     "def": "A magical-seeming transformation.",
+     "ex": "Turn words into gold, call it alchemy"
+    }
+   ]
+  },
+  {
+   "id": "ok-ruh-see",
+   "sound": "OK-ruh-see",
+   "type": "multi",
+   "note": "Four syllables matching (OK-ruh-see). 'Philosophy' only partly fits, but the rhythm sells it.",
+   "words": [
+    {
+     "w": "democracy",
+     "level": 1,
+     "pos": "noun",
+     "def": "Government chosen by the people."
+    },
+    {
+     "w": "Socrates",
+     "level": 1,
+     "pos": "noun",
+     "def": "An ancient Greek philosopher."
+    },
+    {
+     "w": "monopoly",
+     "level": 1,
+     "pos": "noun",
+     "def": "Total control of a market; also a board game."
+    },
+    {
+     "w": "hypocrisy",
+     "level": 2,
+     "pos": "noun",
+     "def": "Saying one thing, doing another."
+    },
+    {
+     "w": "philosophy",
+     "level": 2,
+     "pos": "noun",
+     "def": "The study of big questions about life."
+    },
+    {
+     "w": "bureaucracy",
+     "level": 3,
+     "pos": "noun",
+     "def": "A system weighed down by officials and rules.",
+     "ex": "Cut the bureaucracy, skip the hypocrisy"
+    },
+    {
+     "w": "autocracy",
+     "level": 3,
+     "pos": "noun",
+     "def": "Rule by one person with total power.",
+     "ex": "Mic's my autocracy, no democracy"
+    },
+    {
+     "w": "aristocracy",
+     "level": 3,
+     "pos": "noun",
+     "def": "The highest social class; nobles.",
+     "ex": "Not born in the aristocracy"
+    },
+    {
+     "w": "meritocracy",
+     "level": 3,
+     "pos": "noun",
+     "def": "A system where people rise by ability.",
+     "ex": "Freestyle's a meritocracy"
+    },
+    {
+     "w": "theocracy",
+     "level": 3,
+     "pos": "noun",
+     "def": "A state ruled by religious leaders.",
+     "ex": "Mic is my church, call it theocracy"
+    }
+   ]
+  },
+  {
+   "id": "ort",
+   "sound": "ORT / AWT",
+   "type": "accent",
+   "note": "In a British accent 'caught' and 'court' sound identical, because the r is silent. American rhyme lists miss this.",
+   "words": [
+    {
+     "w": "short",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Not long or tall."
+    },
+    {
+     "w": "sport",
+     "level": 1,
+     "pos": "noun",
+     "def": "A competitive game or activity."
+    },
+    {
+     "w": "caught",
+     "level": 1,
+     "pos": "verb",
+     "def": "Grabbed, or found doing something."
+    },
+    {
+     "w": "taught",
+     "level": 1,
+     "pos": "verb",
+     "def": "Showed someone how to do something."
+    },
+    {
+     "w": "thought",
+     "level": 1,
+     "pos": "noun",
+     "def": "An idea in your head."
+    },
+    {
+     "w": "court",
+     "level": 1,
+     "pos": "noun",
+     "def": "Where trials happen, or where you play tennis."
+    },
+    {
+     "w": "astronaut",
+     "level": 1,
+     "pos": "noun",
+     "def": "Someone who travels to space."
+    },
+    {
+     "w": "fraught",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Full of tension or worry.",
+     "ex": "Fraught with nerves but I'm never caught short"
+    },
+    {
+     "w": "distraught",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Extremely upset.",
+     "ex": "Left 'em distraught with a single thought"
+    },
+    {
+     "w": "juggernaut",
+     "level": 3,
+     "pos": "noun",
+     "def": "A huge, unstoppable force; also a big lorry.",
+     "ex": "Juggernaut flow, can't be stopped or caught"
+    },
+    {
+     "w": "onslaught",
+     "level": 3,
+     "pos": "noun",
+     "def": "A fierce, overwhelming attack.",
+     "ex": "Bar onslaught, every line's taught"
+    }
+   ]
+  },
+  {
+   "id": "aw",
+   "sound": "AW",
+   "type": "accent",
+   "note": "'Saw', 'sore' and 'soar' all sound the same in Britain. That means hundreds of extra rhymes.",
+   "words": [
+    {
+     "w": "more",
+     "level": 1,
+     "pos": "adjective",
+     "def": "A greater amount."
+    },
+    {
+     "w": "floor",
+     "level": 1,
+     "pos": "noun",
+     "def": "What you stand on."
+    },
+    {
+     "w": "war",
+     "level": 1,
+     "pos": "noun",
+     "def": "Armed conflict."
+    },
+    {
+     "w": "saw",
+     "level": 1,
+     "pos": "verb",
+     "def": "Looked at; or a cutting tool."
+    },
+    {
+     "w": "raw",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Uncooked; or real and unpolished."
+    },
+    {
+     "w": "core",
+     "level": 1,
+     "pos": "noun",
+     "def": "The central part."
+    },
+    {
+     "w": "encore",
+     "level": 2,
+     "pos": "noun",
+     "def": "An extra performance because the crowd wants more."
+    },
+    {
+     "w": "folklore",
+     "level": 2,
+     "pos": "noun",
+     "def": "Traditional stories and beliefs."
+    },
+    {
+     "w": "carnivore",
+     "level": 2,
+     "pos": "noun",
+     "def": "A meat-eater."
+    },
+    {
+     "w": "rapport",
+     "level": 3,
+     "pos": "noun",
+     "def": "A close, easy connection with people.",
+     "ex": "Got rapport with the crowd, they're screaming for more"
+    },
+    {
+     "w": "abhor",
+     "level": 3,
+     "pos": "verb",
+     "def": "To hate intensely.",
+     "ex": "Fake MCs I abhor, keep it raw"
+    }
+   ]
+  },
+  {
+   "id": "ah",
+   "sound": "AH",
+   "type": "accent",
+   "note": "UK 'star', 'spa' and 'memoir' all end on the same open 'ah', so French borrowings fit right in.",
+   "words": [
+    {
+     "w": "star",
+     "level": 1,
+     "pos": "noun",
+     "def": "A burning sun far away; or a famous person."
+    },
+    {
+     "w": "car",
+     "level": 1,
+     "pos": "noun",
+     "def": "A vehicle with four wheels."
+    },
+    {
+     "w": "bar",
+     "level": 1,
+     "pos": "noun",
+     "def": "A line of rap; or a place to drink."
+    },
+    {
+     "w": "far",
+     "level": 1,
+     "pos": "adjective",
+     "def": "A long way away."
+    },
+    {
+     "w": "spa",
+     "level": 1,
+     "pos": "noun",
+     "def": "A place for relaxing treatments."
+    },
+    {
+     "w": "avatar",
+     "level": 2,
+     "pos": "noun",
+     "def": "An icon or character that represents you."
+    },
+    {
+     "w": "bazaar",
+     "level": 2,
+     "pos": "noun",
+     "def": "A market with lots of stalls."
+    },
+    {
+     "w": "memoir",
+     "level": 3,
+     "pos": "noun",
+     "def": "A book of someone's own memories.",
+     "ex": "Every bar's a page of my memoir"
+    },
+    {
+     "w": "repertoire",
+     "level": 3,
+     "pos": "noun",
+     "def": "The full range of things someone can perform.",
+     "ex": "Deep repertoire, I'm a star"
+    },
+    {
+     "w": "faux pas",
+     "level": 3,
+     "pos": "noun",
+     "def": "An embarrassing social slip.",
+     "ex": "Biting my flow? That's a faux pas"
+    }
+   ]
+  },
+  {
+   "id": "oo-shun",
+   "sound": "OO-shun",
+   "type": "perfect",
+   "note": "Perfect rhyme. Advanced words add weight, because 'retribution' hits harder than 'solution'.",
+   "words": [
+    {
+     "w": "solution",
+     "level": 1,
+     "pos": "noun",
+     "def": "The answer to a problem."
+    },
+    {
+     "w": "pollution",
+     "level": 1,
+     "pos": "noun",
+     "def": "Dirt and poison in the environment."
+    },
+    {
+     "w": "revolution",
+     "level": 1,
+     "pos": "noun",
+     "def": "A big change or uprising."
+    },
+    {
+     "w": "evolution",
+     "level": 2,
+     "pos": "noun",
+     "def": "Gradual development over time."
+    },
+    {
+     "w": "constitution",
+     "level": 2,
+     "pos": "noun",
+     "def": "A country's founding rules; or your health."
+    },
+    {
+     "w": "retribution",
+     "level": 3,
+     "pos": "noun",
+     "def": "Punishment as payback.",
+     "ex": "Bars are retribution"
+    },
+    {
+     "w": "absolution",
+     "level": 3,
+     "pos": "noun",
+     "def": "Formal forgiveness.",
+     "ex": "No absolution, this is evolution"
+    },
+    {
+     "w": "dissolution",
+     "level": 3,
+     "pos": "noun",
+     "def": "The breaking up or ending of something.",
+     "ex": "Dissolution of your crew, that's the solution"
+    },
+    {
+     "w": "restitution",
+     "level": 3,
+     "pos": "noun",
+     "def": "Paying back for something lost or stolen.",
+     "ex": "Want restitution for the bars you took"
+    }
+   ]
+  },
+  {
+   "id": "ip-tik",
+   "sound": "IP-tik",
+   "type": "slant",
+   "note": "Mosaic rhyme: 'flipped it' (two words) rhymes with 'cryptic' (one word). Splitting a rhyme across words is a key freestyle skill.",
+   "words": [
+    {
+     "w": "flipped it",
+     "level": 1,
+     "pos": "phrase",
+     "def": "Turned it over; changed it up."
+    },
+    {
+     "w": "ripped it",
+     "level": 1,
+     "pos": "phrase",
+     "def": "Tore it; or performed brilliantly."
+    },
+    {
+     "w": "script it",
+     "level": 1,
+     "pos": "phrase",
+     "def": "Plan it out in advance."
+    },
+    {
+     "w": "cryptic",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Mysterious, hidden meaning."
+    },
+    {
+     "w": "elliptical",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Oval-shaped; or leaving words out."
+    },
+    {
+     "w": "apocalyptic",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Like the end of the world.",
+     "ex": "Apocalyptic flow, I didn't script it"
+    },
+    {
+     "w": "triptych",
+     "level": 3,
+     "pos": "noun",
+     "def": "An artwork in three panels.",
+     "ex": "Three bars, a triptych, cryptic"
+    }
+   ]
+  },
+  {
+   "id": "ess-iv",
+   "sound": "ESS-iv",
+   "type": "perfect",
+   "note": "Perfect rhyme. All adjectives, so you can describe yourself or your opponent in a chain.",
+   "words": [
+    {
+     "w": "aggressive",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Ready to attack."
+    },
+    {
+     "w": "impressive",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Deserving admiration."
+    },
+    {
+     "w": "excessive",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Too much."
+    },
+    {
+     "w": "obsessive",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Can't stop thinking about something."
+    },
+    {
+     "w": "progressive",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Favouring change and new ideas."
+    },
+    {
+     "w": "possessive",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Wanting to own or control."
+    },
+    {
+     "w": "oppressive",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Harsh and controlling; or heavy and stifling.",
+     "ex": "Heat's oppressive, flow's impressive"
+    },
+    {
+     "w": "transgressive",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Breaking social or moral rules.",
+     "ex": "Transgressive bars, a bit aggressive"
+    }
+   ]
+  },
+  {
+   "id": "en-shun",
+   "sound": "EN-shun",
+   "type": "perfect",
+   "note": "'Pretentious' adds 'us' but keeps the EN-shun core. A slightly longer word still counts.",
+   "words": [
+    {
+     "w": "tension",
+     "level": 1,
+     "pos": "noun",
+     "def": "Stress or tightness."
+    },
+    {
+     "w": "mention",
+     "level": 1,
+     "pos": "verb",
+     "def": "To say something briefly."
+    },
+    {
+     "w": "attention",
+     "level": 1,
+     "pos": "noun",
+     "def": "Focus or notice."
+    },
+    {
+     "w": "invention",
+     "level": 1,
+     "pos": "noun",
+     "def": "Something newly created."
+    },
+    {
+     "w": "dimension",
+     "level": 2,
+     "pos": "noun",
+     "def": "A measurement; or a whole other world."
+    },
+    {
+     "w": "pretentious",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Trying to seem more important than you are."
+    },
+    {
+     "w": "contentious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Likely to cause an argument.",
+     "ex": "Contentious bars, I get attention"
+    },
+    {
+     "w": "apprehension",
+     "level": 3,
+     "pos": "noun",
+     "def": "Worry about what might happen.",
+     "ex": "Apprehension, you can feel the tension"
+    },
+    {
+     "w": "condescension",
+     "level": 3,
+     "pos": "noun",
+     "def": "Talking down to people.",
+     "ex": "Your condescension, I don't even mention"
+    }
+   ]
+  },
+  {
+   "id": "ark",
+   "sound": "ARK",
+   "type": "perfect",
+   "note": "Single-syllable punch. Words like 'matriarch' put the rhyme on a syllable that isn't stressed, which gives a cool off-beat feel.",
+   "words": [
+    {
+     "w": "dark",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Without light."
+    },
+    {
+     "w": "park",
+     "level": 1,
+     "pos": "noun",
+     "def": "A green public space."
+    },
+    {
+     "w": "mark",
+     "level": 1,
+     "pos": "noun",
+     "def": "A sign, score or stain."
+    },
+    {
+     "w": "spark",
+     "level": 1,
+     "pos": "noun",
+     "def": "A tiny flash of fire."
+    },
+    {
+     "w": "shark",
+     "level": 1,
+     "pos": "noun",
+     "def": "A big predatory fish."
+    },
+    {
+     "w": "lark",
+     "level": 2,
+     "pos": "noun",
+     "def": "A bit of fun (British); also a songbird."
+    },
+    {
+     "w": "monarch",
+     "level": 2,
+     "pos": "noun",
+     "def": "A king or queen."
+    },
+    {
+     "w": "embark",
+     "level": 2,
+     "pos": "verb",
+     "def": "To begin a journey."
+    },
+    {
+     "w": "matriarch",
+     "level": 3,
+     "pos": "noun",
+     "def": "A woman who heads a family or group.",
+     "ex": "Nan's the matriarch, she lit the spark"
+    },
+    {
+     "w": "patriarch",
+     "level": 3,
+     "pos": "noun",
+     "def": "A man who heads a family or group.",
+     "ex": "Patriarch talk, but you're a lark"
+    },
+    {
+     "w": "oligarch",
+     "level": 3,
+     "pos": "noun",
+     "def": "One of a small group of rich, powerful people.",
+     "ex": "Flow like an oligarch, money in the dark"
+    }
+   ]
+  },
+  {
+   "id": "ail",
+   "sound": "AIL",
+   "type": "perfect",
+   "note": "Perfect rhyme. Advanced verbs like 'curtail' and 'regale' make your bars sound deliberate.",
+   "words": [
+    {
+     "w": "fail",
+     "level": 1,
+     "pos": "verb",
+     "def": "To not succeed."
+    },
+    {
+     "w": "mail",
+     "level": 1,
+     "pos": "noun",
+     "def": "Letters and parcels."
+    },
+    {
+     "w": "scale",
+     "level": 1,
+     "pos": "noun",
+     "def": "Size or level; or a fish's skin plate."
+    },
+    {
+     "w": "tale",
+     "level": 1,
+     "pos": "noun",
+     "def": "A story."
+    },
+    {
+     "w": "jail",
+     "level": 1,
+     "pos": "noun",
+     "def": "Prison."
+    },
+    {
+     "w": "inhale",
+     "level": 1,
+     "pos": "verb",
+     "def": "To breathe in."
+    },
+    {
+     "w": "prevail",
+     "level": 2,
+     "pos": "verb",
+     "def": "To win in the end."
+    },
+    {
+     "w": "regale",
+     "level": 3,
+     "pos": "verb",
+     "def": "To entertain someone with stories.",
+     "ex": "I regale 'em with a tale"
+    },
+    {
+     "w": "curtail",
+     "level": 3,
+     "pos": "verb",
+     "def": "To cut short or limit.",
+     "ex": "Try to curtail me, I prevail"
+    },
+    {
+     "w": "assail",
+     "level": 3,
+     "pos": "verb",
+     "def": "To attack fiercely.",
+     "ex": "Assail the mic, I never fail"
+    }
+   ]
+  },
+  {
+   "id": "ite",
+   "sound": "ITE",
+   "type": "perfect",
+   "note": "Hugely common rhyme sound. Reach for 'erudite' or 'contrite' to stand out.",
+   "words": [
+    {
+     "w": "night",
+     "level": 1,
+     "pos": "noun",
+     "def": "The dark hours."
+    },
+    {
+     "w": "light",
+     "level": 1,
+     "pos": "noun",
+     "def": "Brightness that lets you see."
+    },
+    {
+     "w": "fight",
+     "level": 1,
+     "pos": "verb",
+     "def": "To battle."
+    },
+    {
+     "w": "write",
+     "level": 1,
+     "pos": "verb",
+     "def": "To put words down."
+    },
+    {
+     "w": "dynamite",
+     "level": 1,
+     "pos": "noun",
+     "def": "An explosive."
+    },
+    {
+     "w": "despite",
+     "level": 2,
+     "pos": "preposition",
+     "def": "Even though."
+    },
+    {
+     "w": "parasite",
+     "level": 2,
+     "pos": "noun",
+     "def": "Something that lives off another."
+    },
+    {
+     "w": "erudite",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Very learned and well-read.",
+     "ex": "Erudite, I read all night"
+    },
+    {
+     "w": "contrite",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Truly sorry for doing wrong.",
+     "ex": "Not contrite, I'm right"
+    },
+    {
+     "w": "trite",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Overused and unoriginal.",
+     "ex": "Your bars are trite, mine are dynamite"
+    }
+   ]
+  },
+  {
+   "id": "ay-shus",
+   "sound": "AY-shus",
+   "type": "multi",
+   "note": "'Contagious' and 'tenacious' differ on one consonant (j vs sh), which is close enough. A crowd hears the vowel.",
+   "words": [
+    {
+     "w": "gracious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Kind and polite."
+    },
+    {
+     "w": "spacious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Roomy."
+    },
+    {
+     "w": "contagious",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Spreads from person to person."
+    },
+    {
+     "w": "outrageous",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Shocking."
+    },
+    {
+     "w": "courageous",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Brave."
+    },
+    {
+     "w": "audacious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Boldly daring; cheeky.",
+     "ex": "Audacious, contagious, flow's outrageous"
+    },
+    {
+     "w": "tenacious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Determined; never lets go.",
+     "ex": "Tenacious, I'm courageous"
+    },
+    {
+     "w": "loquacious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Very talkative.",
+     "ex": "Loquacious, I talk 'til the room's spacious"
+    },
+    {
+     "w": "vivacious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Lively and full of energy.",
+     "ex": "Vivacious crowd, the energy's contagious"
+    },
+    {
+     "w": "sagacious",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Wise, with good judgement.",
+     "ex": "Sagacious with the bars, gracious"
+    },
+    {
+     "w": "advantageous",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Giving you an edge.",
+     "ex": "Home crowd's advantageous"
+    }
+   ]
+  },
+  {
+   "id": "ar-kee",
+   "sound": "AR-kee",
+   "type": "accent",
+   "note": "British 'khaki' is 'KAH-kee', the same sound as 'snarky'. Americans say 'KAK-ee', so this rhyme only works over here.",
+   "words": [
+    {
+     "w": "khaki",
+     "level": 1,
+     "pos": "noun",
+     "def": "A dull yellow-brown colour."
+    },
+    {
+     "w": "snarky",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Sarcastic and rude."
+    },
+    {
+     "w": "sparky",
+     "level": 1,
+     "pos": "slang",
+     "def": "An electrician (UK); or lively."
+    },
+    {
+     "w": "anarchy",
+     "level": 2,
+     "pos": "noun",
+     "def": "No government or rules; chaos."
+    },
+    {
+     "w": "monarchy",
+     "level": 2,
+     "pos": "noun",
+     "def": "Rule by a king or queen."
+    },
+    {
+     "w": "hierarchy",
+     "level": 2,
+     "pos": "noun",
+     "def": "A ranking from top to bottom."
+    },
+    {
+     "w": "malarkey",
+     "level": 3,
+     "pos": "noun",
+     "def": "Nonsense.",
+     "ex": "None of that malarkey, khaki"
+    },
+    {
+     "w": "oligarchy",
+     "level": 3,
+     "pos": "noun",
+     "def": "Rule by a small, powerful group.",
+     "ex": "Break the oligarchy, bring anarchy"
+    }
+   ]
+  },
+  {
+   "id": "ust",
+   "sound": "UST",
+   "type": "perfect",
+   "note": "Perfect rhyme. Note 'august' (an adjective with stress on the second syllable) versus 'August' the month.",
+   "words": [
+    {
+     "w": "trust",
+     "level": 1,
+     "pos": "noun",
+     "def": "Belief in someone's honesty."
+    },
+    {
+     "w": "dust",
+     "level": 1,
+     "pos": "noun",
+     "def": "Fine dirt."
+    },
+    {
+     "w": "must",
+     "level": 1,
+     "pos": "verb",
+     "def": "Have to."
+    },
+    {
+     "w": "rust",
+     "level": 1,
+     "pos": "noun",
+     "def": "Orange decay on metal."
+    },
+    {
+     "w": "disgust",
+     "level": 1,
+     "pos": "noun",
+     "def": "Strong dislike."
+    },
+    {
+     "w": "robust",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Strong and sturdy."
+    },
+    {
+     "w": "unjust",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Unfair."
+    },
+    {
+     "w": "august",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Respected and impressive (stress on 'GUST').",
+     "ex": "August company, I earned their trust"
+    },
+    {
+     "w": "wanderlust",
+     "level": 3,
+     "pos": "noun",
+     "def": "A strong desire to travel.",
+     "ex": "Wanderlust, leave the haters in the dust"
+    }
+   ]
+  },
+  {
+   "id": "ole",
+   "sound": "OLE",
+   "type": "perfect",
+   "note": "Perfect rhyme with some brilliant British-sounding vocab. 'Rigmarole' is a great word to drop.",
+   "words": [
+    {
+     "w": "soul",
+     "level": 1,
+     "pos": "noun",
+     "def": "Your inner self."
+    },
+    {
+     "w": "goal",
+     "level": 1,
+     "pos": "noun",
+     "def": "An aim; or scoring in football."
+    },
+    {
+     "w": "roll",
+     "level": 1,
+     "pos": "verb",
+     "def": "To turn over and over."
+    },
+    {
+     "w": "control",
+     "level": 1,
+     "pos": "noun",
+     "def": "Power over something."
+    },
+    {
+     "w": "hole",
+     "level": 1,
+     "pos": "noun",
+     "def": "A gap or opening."
+    },
+    {
+     "w": "parole",
+     "level": 2,
+     "pos": "noun",
+     "def": "Early release from prison."
+    },
+    {
+     "w": "cajole",
+     "level": 3,
+     "pos": "verb",
+     "def": "To persuade by flattery.",
+     "ex": "Cajole the crowd, take control"
+    },
+    {
+     "w": "rigmarole",
+     "level": 3,
+     "pos": "noun",
+     "def": "A long, pointless, complicated process.",
+     "ex": "Skip the rigmarole, straight to the goal"
+    }
+   ]
+  },
+  {
+   "id": "az-um",
+   "sound": "AZ-um",
+   "type": "slant",
+   "note": "Two syllables, stress on the first. Pairs with mosaic rhymes like 'has 'em' and 'smash 'em'.",
+   "words": [
+    {
+     "w": "sarcasm",
+     "level": 1,
+     "pos": "noun",
+     "def": "Saying the opposite of what you mean to mock."
+    },
+    {
+     "w": "enthusiasm",
+     "level": 1,
+     "pos": "noun",
+     "def": "Eager excitement."
+    },
+    {
+     "w": "spasm",
+     "level": 2,
+     "pos": "noun",
+     "def": "A sudden, uncontrolled muscle movement."
+    },
+    {
+     "w": "chasm",
+     "level": 2,
+     "pos": "noun",
+     "def": "A deep crack in the ground; a huge gap."
+    },
+    {
+     "w": "phantasm",
+     "level": 3,
+     "pos": "noun",
+     "def": "An illusion or ghostly image.",
+     "ex": "Phantasm flow, I vanish, no sarcasm"
+    }
+   ]
+  },
+  {
+   "id": "ack",
+   "sound": "ACK",
+   "type": "perfect",
+   "note": "Short and punchy. Long words ending in '-iac' put the rhyme at the very end, which makes a strong closer.",
+   "words": [
+    {
+     "w": "back",
+     "level": 1,
+     "pos": "noun",
+     "def": "The rear; or support."
+    },
+    {
+     "w": "track",
+     "level": 1,
+     "pos": "noun",
+     "def": "A song; or a path."
+    },
+    {
+     "w": "black",
+     "level": 1,
+     "pos": "adjective",
+     "def": "The darkest colour."
+    },
+    {
+     "w": "crack",
+     "level": 1,
+     "pos": "verb",
+     "def": "To break slightly."
+    },
+    {
+     "w": "attack",
+     "level": 1,
+     "pos": "verb",
+     "def": "To go after."
+    },
+    {
+     "w": "knack",
+     "level": 2,
+     "pos": "noun",
+     "def": "A natural skill."
+    },
+    {
+     "w": "maniac",
+     "level": 2,
+     "pos": "noun",
+     "def": "A wild person."
+    },
+    {
+     "w": "cul-de-sac",
+     "level": 2,
+     "pos": "noun",
+     "def": "A dead-end street."
+    },
+    {
+     "w": "almanac",
+     "level": 3,
+     "pos": "noun",
+     "def": "A yearly book of facts and dates.",
+     "ex": "Write my name in the almanac"
+    },
+    {
+     "w": "hypochondriac",
+     "level": 3,
+     "pos": "noun",
+     "def": "Someone always worried they're ill.",
+     "ex": "Bars so sick, I'm a hypochondriac"
+    }
+   ]
+  },
+  {
+   "id": "oh-shun",
+   "sound": "OH-shun",
+   "type": "perfect",
+   "note": "Perfect rhyme. 'Explosion' and 'erosion' swap sh for zh, which is still close.",
+   "words": [
+    {
+     "w": "ocean",
+     "level": 1,
+     "pos": "noun",
+     "def": "A huge body of saltwater."
+    },
+    {
+     "w": "motion",
+     "level": 1,
+     "pos": "noun",
+     "def": "Movement."
+    },
+    {
+     "w": "potion",
+     "level": 1,
+     "pos": "noun",
+     "def": "A magic drink."
+    },
+    {
+     "w": "emotion",
+     "level": 1,
+     "pos": "noun",
+     "def": "A feeling."
+    },
+    {
+     "w": "lotion",
+     "level": 1,
+     "pos": "noun",
+     "def": "Cream for your skin."
+    },
+    {
+     "w": "devotion",
+     "level": 2,
+     "pos": "noun",
+     "def": "Deep commitment."
+    },
+    {
+     "w": "commotion",
+     "level": 2,
+     "pos": "noun",
+     "def": "A noisy disturbance."
+    },
+    {
+     "w": "erosion",
+     "level": 2,
+     "pos": "noun",
+     "def": "Slow wearing away."
+    },
+    {
+     "w": "locomotion",
+     "level": 3,
+     "pos": "noun",
+     "def": "The ability to move from place to place.",
+     "ex": "Pure locomotion, my flow's an ocean"
+    }
+   ]
+  },
+  {
+   "id": "ink",
+   "sound": "INK",
+   "type": "perfect",
+   "note": "One syllable. 'Hoodwink' gives you a two-syllable word that still lands on the rhyme.",
+   "words": [
+    {
+     "w": "think",
+     "level": 1,
+     "pos": "verb",
+     "def": "To use your mind."
+    },
+    {
+     "w": "drink",
+     "level": 1,
+     "pos": "noun",
+     "def": "Something to swallow."
+    },
+    {
+     "w": "link",
+     "level": 1,
+     "pos": "noun",
+     "def": "A connection."
+    },
+    {
+     "w": "pink",
+     "level": 1,
+     "pos": "adjective",
+     "def": "A light red colour."
+    },
+    {
+     "w": "wink",
+     "level": 1,
+     "pos": "verb",
+     "def": "To close one eye quickly."
+    },
+    {
+     "w": "brink",
+     "level": 2,
+     "pos": "noun",
+     "def": "The very edge."
+    },
+    {
+     "w": "extinct",
+     "level": 2,
+     "pos": "adjective",
+     "def": "No longer existing."
+    },
+    {
+     "w": "hoodwink",
+     "level": 3,
+     "pos": "verb",
+     "def": "To trick or deceive.",
+     "ex": "Can't hoodwink me, I think"
+    }
+   ]
+  },
+  {
+   "id": "in-ing",
+   "sound": "IN-ing",
+   "type": "perfect",
+   "note": "Two syllables, stress on IN. 'Underpinning' rhymes on its last two syllables, which is a quiet flex.",
+   "words": [
+    {
+     "w": "winning",
+     "level": 1,
+     "pos": "verb",
+     "def": "Coming first."
+    },
+    {
+     "w": "spinning",
+     "level": 1,
+     "pos": "verb",
+     "def": "Turning round and round."
+    },
+    {
+     "w": "beginning",
+     "level": 1,
+     "pos": "noun",
+     "def": "The start."
+    },
+    {
+     "w": "grinning",
+     "level": 1,
+     "pos": "verb",
+     "def": "Smiling widely."
+    },
+    {
+     "w": "pinning",
+     "level": 1,
+     "pos": "verb",
+     "def": "Fixing in place."
+    },
+    {
+     "w": "underpinning",
+     "level": 3,
+     "pos": "noun",
+     "def": "The foundation that holds something up.",
+     "ex": "Faith is the underpinning, that's why I'm winning"
+    }
+   ]
+  },
+  {
+   "id": "own",
+   "sound": "OWN (as in crown)",
+   "type": "perfect",
+   "note": "Perfect rhyme. Compound words like 'showdown' are easy multis.",
+   "words": [
+    {
+     "w": "town",
+     "level": 1,
+     "pos": "noun",
+     "def": "A small city."
+    },
+    {
+     "w": "down",
+     "level": 1,
+     "pos": "adverb",
+     "def": "Towards the ground."
+    },
+    {
+     "w": "crown",
+     "level": 1,
+     "pos": "noun",
+     "def": "What a king wears."
+    },
+    {
+     "w": "frown",
+     "level": 1,
+     "pos": "noun",
+     "def": "An unhappy face."
+    },
+    {
+     "w": "clown",
+     "level": 1,
+     "pos": "noun",
+     "def": "A comic performer."
+    },
+    {
+     "w": "showdown",
+     "level": 2,
+     "pos": "noun",
+     "def": "A final confrontation."
+    },
+    {
+     "w": "renown",
+     "level": 3,
+     "pos": "noun",
+     "def": "Fame and respect.",
+     "ex": "Renown in the town, I wear the crown"
+    }
+   ]
+  },
+  {
+   "id": "ead",
+   "sound": "ED",
+   "type": "perfect",
+   "note": "One syllable, perfect rhyme. 'Figurehead' rhymes only its final syllable, which still works on the beat.",
+   "words": [
+    {
+     "w": "head",
+     "level": 1,
+     "pos": "noun",
+     "def": "The top of your body."
+    },
+    {
+     "w": "bread",
+     "level": 1,
+     "pos": "noun",
+     "def": "A baked food; also slang for money."
+    },
+    {
+     "w": "said",
+     "level": 1,
+     "pos": "verb",
+     "def": "Spoke."
+    },
+    {
+     "w": "red",
+     "level": 1,
+     "pos": "adjective",
+     "def": "The colour of blood."
+    },
+    {
+     "w": "instead",
+     "level": 1,
+     "pos": "adverb",
+     "def": "As an alternative."
+    },
+    {
+     "w": "widespread",
+     "level": 2,
+     "pos": "adjective",
+     "def": "Found everywhere."
+    },
+    {
+     "w": "thoroughbred",
+     "level": 2,
+     "pos": "noun",
+     "def": "A pure-bred horse; or a top-quality person."
+    },
+    {
+     "w": "figurehead",
+     "level": 3,
+     "pos": "noun",
+     "def": "A leader in name only, with no real power.",
+     "ex": "You're a figurehead, I'm the one that's said"
+    }
+   ]
+  },
+  {
+   "id": "ee-zun",
+   "sound": "EE-zun",
+   "type": "perfect",
+   "note": "Two syllables. 'Freezing' and 'squeezing' swap n for ng, and they ride along fine.",
+   "words": [
+    {
+     "w": "reason",
+     "level": 1,
+     "pos": "noun",
+     "def": "A cause or explanation."
+    },
+    {
+     "w": "season",
+     "level": 1,
+     "pos": "noun",
+     "def": "A time of year."
+    },
+    {
+     "w": "freezing",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Very cold."
+    },
+    {
+     "w": "pleasing",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Satisfying."
+    },
+    {
+     "w": "treason",
+     "level": 2,
+     "pos": "noun",
+     "def": "Betraying your own country."
+    }
+   ]
+  },
+  {
+   "id": "em-uh-rul",
+   "sound": "EM-uh-rul",
+   "type": "slant",
+   "note": "A soft multi: three syllables with a matching vowel. 'General' and 'several' fit even though spelling differs.",
+   "words": [
+    {
+     "w": "general",
+     "level": 1,
+     "pos": "adjective",
+     "def": "Broad, not specific; or an army leader."
+    },
+    {
+     "w": "several",
+     "level": 1,
+     "pos": "adjective",
+     "def": "More than two but not many."
+    },
+    {
+     "w": "federal",
+     "level": 2,
+     "pos": "adjective",
+     "def": "To do with a central government."
+    },
+    {
+     "w": "ephemeral",
+     "level": 3,
+     "pos": "adjective",
+     "def": "Lasting a very short time.",
+     "ex": "Fame's ephemeral, bars are general"
+    }
+   ]
+  }
+ ]
+}
